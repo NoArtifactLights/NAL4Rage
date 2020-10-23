@@ -22,58 +22,18 @@ namespace NALRage
 {
     public static class Entry
     {
+        // TODO make this for game manager to use
         internal static List<uint> ArmedIds = new List<uint>();
         
         internal static Configuration Config;
         private static GameFiber process;
-        private static bool enabled = true;
+        private static bool enabled = true; // TODO deprecate this
 
         [ConsoleCommand(Name = "ReloadConfigs", Description = "Reloads configuration of NAL.")]
-        private static Configuration GetConfig()
-        {
-            Configuration result;
-            SaveUtils.SaveManager.CheckAndFixDataFolder();
-            if(!File.Exists("NAL\\Config.json"))
-            {
-                result = new Configuration(1);
-                File.WriteAllText("NAL\\Config.json", JsonConvert.SerializeObject(result));
-                return result;
-            }
-            string s;
-            try
-            {
-                s = File.ReadAllText("NAL\\Config.json");
-            }
-            catch(Exception ex)
-            {
-                Game.LogTrivial("Exception caught when loading config");
-                Game.LogTrivial(ex.ToString());
-                s = "";
-            }
-            if(string.IsNullOrWhiteSpace(s))
-            {
-                result = new Configuration(1);
-                File.WriteAllText("NAL\\Config.json", JsonConvert.SerializeObject(result));
-                return result;
-            }
-            try
-            {
-                result = JsonConvert.DeserializeObject<Configuration>(s);
-            }
-            catch(Exception ex)
-            {
-                Game.LogTrivial("Exception caught when deserialzing config: ");
-                Game.LogTrivial(ex.ToString());
-                result = new Configuration(1);
-                File.WriteAllText("NAL\\Config.json", JsonConvert.SerializeObject(result));
-            }
-            if(result.Version != 1)
-            {
-                result = new Configuration(1);
-                File.WriteAllText("NAL\\Config.json", JsonConvert.SerializeObject(result));
-                return result;
-            }
-            return result;
+        private static void GetConfig()
+        { 
+            ConfigurationHandler.Init();
+            Config = ConfigurationHandler.Config;
         }
 
         public static void Main()

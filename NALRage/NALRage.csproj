@@ -33,8 +33,8 @@
     <Reference Include="RAGENativeUI">
       <HintPath>..\..\..\..\..\..\Program Files\Epic Games\GTAVF\GTAV\RAGENativeUI.dll</HintPath>
     </Reference>
-    <Reference Include="RagePluginHookSDK">
-      <HintPath>D:\SDK\RagePluginHookSDK.dll</HintPath>
+    <Reference Include="RagePluginHook, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\References\RagePluginHookSDK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,6 +56,7 @@
     <Compile Include="Engine\Modification\API\Events\Integrated\ArmedPed.cs" />
     <Compile Include="Engine\Modification\API\Functions.cs" />
     <Compile Include="Engine\Modification\API\Logger.cs" />
+    <Compile Include="Engine\Modification\ConfigurationHandler.cs" />
     <Compile Include="Engine\Modification\CrashReporter.cs" />
     <Compile Include="Engine\Modification\GameFibers\GameManager.cs" />
     <Compile Include="Engine\Modification\GameFibers\HungryManager.cs" />
