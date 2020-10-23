@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="RAGENativeUI">
-      <HintPath>..\..\..\..\..\..\Program Files\Epic Games\GTAVF\GTAV\RAGENativeUI.dll</HintPath>
+      <HintPath>..\References\RAGENativeUI.dll</HintPath>
     </Reference>
     <Reference Include="RagePluginHook, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\References\RagePluginHookSDK.dll</HintPath>
