@@ -33,7 +33,7 @@ namespace NALRage.Engine.Modification.API.Events
             Logger.Trace("EventManager", "Starting " + Events[result].Name + " event");
             try
             {
-                instance.Start();
+                instance.Start(p);
                 //processing.Add(instance);
             }
             catch(Exception ex)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NALRage.Entities;
 using Rage;
 
@@ -45,7 +46,13 @@ namespace NALRage.Engine.Modification.API
                     break;
             }
 
-            ped.Inventory.Weapons.Contains(wp);
+            if (!ped.Inventory.Weapons.Contains(wp))
+            {
+                WeaponDescriptor weapon = ped.Inventory.Weapons.Add(wp);
+                weapon.Ammo = 10000;
+            }
+            
+           
         }
     }
 }

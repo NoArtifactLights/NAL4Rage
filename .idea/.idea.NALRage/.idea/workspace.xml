@@ -19,7 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f606328-a148-4e10-b5f5-7feedbeb719a" name="默认的" comment=":bulb: Make configuration load from INI file by RAGE" />
+    <list default="true" id="2f606328-a148-4e10-b5f5-7feedbeb719a" name="默认的" comment=":bulb: Make configuration load from INI file by RAGE">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.NALRage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NALRage/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NALRage/Engine/Modification/API/Functions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/Engine/Modification/API/Functions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NALRage/Engine/Modification/GameFibers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/Engine/Modification/GameFibers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NALRage/Engine/WeaponShopUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/Engine/WeaponShopUtils.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +38,9 @@
       <list>
         <option value="$PROJECT_DIR$/NALRage/Engine/Modification/ConfigurationHandler.cs" />
         <option value="$PROJECT_DIR$/NALRage/Entry.cs" />
+        <option value="$PROJECT_DIR$/NALRage/Engine/Modification/API/Functions.cs" />
+        <option value="$PROJECT_DIR$/NALRage/Engine/WeaponShopUtils.cs" />
+        <option value="$PROJECT_DIR$/NALRage/Engine/Modification/GameFibers/GameManager.cs" />
       </list>
     </option>
   </component>
@@ -60,6 +68,8 @@
       <updated>1603342635153</updated>
       <workItem from="1603342654332" duration="1794000" />
       <workItem from="1603416401311" duration="1014000" />
+      <workItem from="1603590641040" duration="1664000" />
+      <workItem from="1603599216230" duration="357000" />
     </task>
     <task id="LOCAL-00001" summary=":bulb: Make configuration load from INI file by RAGE">
       <created>1603417343701</created>
@@ -98,5 +108,24 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="233" y="78" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1603417362116" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/NALRage/Engine/WeaponShopUtils.cs</url>
+          <line>29</line>
+          <properties documentPath="C:\Programs\DevProjs\NALRage\NALRage\Engine\WeaponShopUtils.cs" initialLine="28">
+            <startOffsets>
+              <option value="1402" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1403" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

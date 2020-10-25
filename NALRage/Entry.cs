@@ -78,10 +78,10 @@ namespace NALRage
             }
         }
 
+/*
         /// <summary>
         /// Consider use <see cref="GameManager.ProcessEach100()"/> as of this is no longer used.
         /// </summary>
-        // TODO Delete it
         [Obsolete]
         public static void ProcessEvents()
         {
@@ -144,19 +144,10 @@ namespace NALRage
                                 break;
                         }
                     }
-                //if (!enabled) // we don't want our while runs until 100 interval
-                //{
-                //    continue;
-                //}
-                //else
-                //{
-                //}
-                //enabled = false;
-                //GameFiber.Sleep(1);
-                foreach (Ped p2 in peds)
-                {
-                    if (!p2.Exists()) continue;
-                    if (!p2.IsHuman) continue;
+                    foreach (Ped p2 in peds)
+                    {
+                        if (!p2.Exists()) continue;
+                        if (!p2.IsHuman) continue;
                     
 
                         
@@ -204,5 +195,6 @@ namespace NALRage
                 GameFiber.Sleep(100);
             }
         }
+*/
     }
 }

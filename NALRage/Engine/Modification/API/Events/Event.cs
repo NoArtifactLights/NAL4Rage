@@ -9,19 +9,19 @@ namespace NALRage.Engine.Modification.API.Events
     {
         internal GameFiber Fiber;
 
-        public abstract void Start();
+        public abstract void Start(Ped p);
         public abstract void Process();
 
         public virtual bool IsEnded { get; set; }
 
-        internal void FiberThread()
-        {
-            Start();
-            while(!IsEnded)
-            {
-                GameFiber.Yield();
-                Process();
-            }
-        }
+        // internal void FiberThread()
+        // {
+        //     Start(p);
+        //     while(!IsEnded)
+        //     {
+        //         GameFiber.Yield();
+        //         Process();
+        //     }
+        // }
     }
 }

@@ -1,4 +1,7 @@
-﻿using Rage;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Rage;
 using RAGENativeUI.Elements;
 
 namespace NALRage.Engine
@@ -7,11 +10,13 @@ namespace NALRage.Engine
     {
         public static WeaponDescriptor GetWeaponFromHash(this WeaponDescriptorCollection collection, WeaponHash hash)
         {
-            foreach(WeaponDescriptor wd in collection)
-            {
-                if (wd.Hash == hash) return wd;
-            }
-            return null;
+            WeaponDescriptor[] wds;
+            IEnumerable<WeaponDescriptor> results =
+                from descriptor in collection where descriptor.Hash == hash select descriptor;
+            var weaponDescriptors = results as WeaponDescriptor[] ?? results.ToArray();
+            if(weaponDescriptors.Count() > 1) throw new InvalidOperationException("Seems like two weapon descriptors with one hash exists!");
+            wds = weaponDescriptors.ToArray();
+            return wds[0];
         }
 
         private static Vector3[] ammus = { new Vector3(18.18945f, -1120.384f, 28.91654f), new Vector3(-325.6184f, 6072.246f, 31.21228f) };
