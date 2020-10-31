@@ -72,7 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Engine\Interfaces\" />
-    <Folder Include="Engine\Modification\API\Events\Integrated\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
@@ -80,4 +79,8 @@
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
 </Project>

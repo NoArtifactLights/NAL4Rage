@@ -34,7 +34,7 @@ namespace NALRage.Engine.Modification
             catch (Exception e)
             {
                 initializationFile.Delete();
-                Game.DisplayNotification("Please try reload this plugin once!");
+                Game.DisplayNotification("Please try reload this plug-in once!");
                 Game.DisplayNotification("If still can't, grab logs and visit <strong>Service Desk</strong>, URL is in logs!");
                 Game.LogTrivial("URL: https://hotworkshop.atlassian.net/servicedesk/customer/portal/2");
                 CrashReporter cr = new CrashReporter(e);
@@ -44,8 +44,8 @@ namespace NALRage.Engine.Modification
             if (configuration.Version != 2)
             {
                 initializationFile.Delete();
-                Game.DisplayHelp("Please reload the plugin using the console!");
-                Game.DisplayNotification("Please reload the plugin using the console!");
+                Game.DisplayHelp("Please reload the plug-in using the console!");
+                Game.DisplayNotification("Please reload the plug-in using the console!");
                 CrashReporter cr = new CrashReporter(new FormatException("Invalid configuration version - please restart!"));
                 cr.ReportAndCrashPlugin();
             }

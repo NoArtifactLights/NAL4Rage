@@ -53,7 +53,7 @@ namespace NALRage.Engine.Menus
             itemLoad.Activated += ItemLoad_Activated;
             itemCallCops.Activated += ItemCallCops_Activated;
 
-            modelsMenu = new UIMenu("NAL", "Appearence Menu");
+            modelsMenu = new UIMenu("NAL", "Appearance Menu");
             itemCop = new UIMenuItem("Male Cop", "The male LSPD officer.");
             itemClassic = new UIMenuItem("Classic", "The classic NAL load model.");
             itemCop.Activated += ItemCop_Activated;

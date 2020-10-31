@@ -19,11 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f606328-a148-4e10-b5f5-7feedbeb719a" name="默认的" comment=":bulb: Make configuration load from INI file by RAGE">
+    <list default="true" id="2f606328-a148-4e10-b5f5-7feedbeb719a" name="默认的" comment=":construction: Make armed ped event work">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NALRage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NALRage/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NALRage/Engine/Modification/API/Functions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/Engine/Modification/API/Functions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NALRage/Engine/Modification/GameFibers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/Engine/Modification/GameFibers/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NALRage/Engine/WeaponShopUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/Engine/WeaponShopUtils.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,10 +34,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/NALRage/Engine/Modification/ConfigurationHandler.cs" />
-        <option value="$PROJECT_DIR$/NALRage/Entry.cs" />
         <option value="$PROJECT_DIR$/NALRage/Engine/Modification/API/Functions.cs" />
         <option value="$PROJECT_DIR$/NALRage/Engine/WeaponShopUtils.cs" />
         <option value="$PROJECT_DIR$/NALRage/Engine/Modification/GameFibers/GameManager.cs" />
+        <option value="$PROJECT_DIR$/NALRage/Engine/Modification/API/Events/EventManager.cs" />
+        <option value="$PROJECT_DIR$/NALRage/Engine/Modification/API/Events/Event.cs" />
+        <option value="$PROJECT_DIR$/NALRage/Engine/Modification/API/Events/Integrated/ArmedPed.cs" />
+        <option value="$PROJECT_DIR$/NALRage/Entry.cs" />
       </list>
     </option>
   </component>
@@ -56,6 +56,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.控制台字体" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -69,7 +70,8 @@
       <workItem from="1603342654332" duration="1794000" />
       <workItem from="1603416401311" duration="1014000" />
       <workItem from="1603590641040" duration="1664000" />
-      <workItem from="1603599216230" duration="357000" />
+      <workItem from="1603599216230" duration="2318000" />
+      <workItem from="1603607200702" duration="180000" />
     </task>
     <task id="LOCAL-00001" summary=":bulb: Make configuration load from INI file by RAGE">
       <created>1603417343701</created>
@@ -78,7 +80,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603417343701</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary=":construction: Make armed ped event work">
+      <created>1603599849023</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1603599849023</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,13 +110,22 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value=":bulb: Make configuration load from INI file by RAGE" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bulb: Make configuration load from INI file by RAGE" />
+    <MESSAGE value=":construction: Make armed ped event work" />
+    <option name="LAST_COMMIT_MESSAGE" value=":construction: Make armed ped event work" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="233" y="78" key="Vcs.Push.Dialog.v2" timestamp="1603417362116">
+    <state x="233" y="77" key="Rider.ProjectTemplateDialog.Size" timestamp="1603606795257">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="233" y="78" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1603417362116" />
+    <state x="233" y="77" key="Rider.ProjectTemplateDialog.Size/0.0.1280.689@0.0.1280.689" timestamp="1603606795257" />
+    <state x="142" y="0" key="SettingsEditor" timestamp="1603607322329">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1603607322329" />
+    <state x="233" y="78" key="Vcs.Push.Dialog.v2" timestamp="1603599859585">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="233" y="78" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1603599859585" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
