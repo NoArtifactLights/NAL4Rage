@@ -57,12 +57,11 @@ namespace NALRage
                 Game.MaxWantedLevel = 0;
                 GameContentUtils.SetRelationship(Difficulty.Initial);
                 NativeFunction.Natives.x1268615ACE24D504(true);
-                Logger.Info("Main", "GameFiber > MenuManager.FiberInit > Creating Instance");
-                GameFiber menu = new GameFiber(MenuManager.FiberInit);
-                Logger.Info("Main", "GameFiber > MenuManager.FiberInit > Calling Start");
-                menu.Start();
+                Logger.Info("Main", "GameFiber > MenuManager.FiberInit > Creating & Starting Instance");
+                GameFiber menu;
+                menu = GameFiber.StartNew(MenuManager.FiberInit);
                 Logger.Info("Main", "GameFiber > GameManager.ProcessEach100 > Creating & Starting Instance");
-                process = GameFiber.ExecuteNewFor(GameManager.ProcessEach100, 100);
+                process = GameFiber.ExecuteNewFor(GameManager.ProcessEach100, -1);
                 GameFiber.Sleep(5000);
                 Game.FadeScreenIn(1000);
                 Logger.Info("Main", "DONE!");

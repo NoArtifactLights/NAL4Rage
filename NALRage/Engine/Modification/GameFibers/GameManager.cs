@@ -15,6 +15,7 @@ namespace NALRage.Engine.Modification.GameFibers
 
         internal static void ProcessEach100()
         {
+            GameFiber.Sleep(99);
             Ped[] peds = World.GetAllPeds();
             foreach(Ped p in peds)
             {

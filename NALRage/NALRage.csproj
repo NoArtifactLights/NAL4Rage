@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Engine\Common.cs" />
     <Compile Include="Engine\GameContentUtils.cs" />
+    <Compile Include="Engine\HungryUtils.cs" />
     <Compile Include="Engine\Menus\MenuManager.cs" />
     <Compile Include="Engine\Modification\API\Events\Event.cs" />
     <Compile Include="Engine\Modification\API\Events\EventManager.cs" />

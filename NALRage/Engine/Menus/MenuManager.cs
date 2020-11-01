@@ -24,6 +24,9 @@ namespace NALRage.Engine.Menus
         private static UIMenuItem itemPumpShotgun;
         private static UIMenuItem itemBodyArmor;
 
+        private static UIMenu foodMenu;
+        private static UIMenuItem itemHamburger;
+
         private static UIMenu modelsMenu;
         private static UIMenuItem itemCop;
         private static UIMenuItem itemClassic;
@@ -77,6 +80,11 @@ namespace NALRage.Engine.Menus
             buyMenu.AddItem(itemBodyArmor);
             buyMenu.RefreshIndex();
             Pool.Add(buyMenu);
+
+            foodMenu = new UIMenu("Shop", "Food Menu");
+            itemHamburger = new UIMenuItem("Hamburger");
+            foodMenu.AddItem(itemHamburger);
+            Pool.Add(foodMenu);
             while(true)
             {
                 GameFiber.Yield();

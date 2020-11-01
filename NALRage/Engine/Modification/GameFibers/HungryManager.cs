@@ -18,6 +18,7 @@ namespace NALRage.Engine.Modification.GameFibers
 
         internal static void Fiber()
         {
+            GameFiber.Sleep(1499);
             if(hungry <= 2.5f)
             {
                 Game.LocalPlayer.Character.Health--;
@@ -27,6 +28,7 @@ namespace NALRage.Engine.Modification.GameFibers
             hungry -= offset;
 
             hungryBar.Percentage = hungry / 10;
+            GameFiber.Yield();
         }
     }
 }
