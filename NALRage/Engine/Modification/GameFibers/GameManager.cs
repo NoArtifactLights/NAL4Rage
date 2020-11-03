@@ -15,59 +15,69 @@ namespace NALRage.Engine.Modification.GameFibers
 
         internal static void ProcessEach100()
         {
-            GameFiber.Sleep(99);
-            Ped[] peds = World.GetAllPeds();
-            foreach(Ped p in peds)
+            
+            while(true)
             {
+                if(Game.IsKeyDown(System.Windows.Forms.Keys.F5))
+                {
+                    Entry.debugScreen = !Entry.debugScreen;
+                }
+                GameFiber.Sleep(99);
                 GameFiber.Yield();
-                if (!p.Exists()) continue;
-                // Detects whether a ped was killed by the player
-                if(p.HasBeenDamagedBy(Game.LocalPlayer.Character) && p.IsDead && !killedPeds.Contains(p.Handle))
+                Ped[] peds = World.GetAllPeds();
+                foreach (Ped p in peds)
                 {
-                    killedPeds.Add(p.Handle);
-                    Common.Kills++;
-                    Common.Cash += new Random().Next(5, 15);
-                    if(Entry.ArmedIds.Contains(p.Handle))
+                    GameFiber.Yield();
+                    if (!p.Exists()) continue;
+                    // Detects whether a ped was killed by the player
+                    if (p.HasBeenDamagedBy(Game.LocalPlayer.Character) && p.IsDead && !killedPeds.Contains(p.Handle))
                     {
-                        Common.Cash += Common.ArmedBonus;
-                        Game.DisplayHelp("Kill armed ped bonus +$" + Common.ArmedBonus);
+                        killedPeds.Add(p.Handle);
+                        Common.Kills++;
+                        Common.Cash += new Random().Next(5, 15);
+                        if (Entry.ArmedIds.Contains(p.Handle))
+                        {
+                            Common.Cash += Common.ArmedBonus;
+                            Game.DisplayHelp("Kill armed ped bonus +$" + Common.ArmedBonus);
+                        }
+
+                        // Checks and removes it's blip as this ped is currently dead.
+                        if (p.GetAttachedBlip().Exists())
+                        {
+                            p.GetAttachedBlip().Delete();
+                        }
+                        DetermineDiff();
+                    }
+                }
+                foreach (Ped p2 in peds)
+                {
+                    if (!p2.Exists()) continue;
+                    // Avoid animals to be flagged
+                    if (!p2.IsHuman) continue;
+
+                    int var = new Random().Next(9, 889);
+                    if (var == 89 && !Entry.ArmedIds.Contains(p2.Handle) && !(p2.Model.Name == "s_m_y_cop_01" || p2.Model.Name == "s_f_y_cop_01") && !p2.IsPlayer)
+                    {
+                        EventManager.StartRandomEvent(p2);
                     }
 
-                    // Checks and removes it's blip as this ped is currently dead.
-                    if (p.GetAttachedBlip().Exists())
-                    {
-                        p.GetAttachedBlip().Delete();
-                    }
-                    DetermineDiff();
                 }
-            }
-            foreach(Ped p2 in peds)
-            {
-                if (!p2.Exists()) continue;
-                // Avoid animals to be flagged
-                if (!p2.IsHuman) continue;
-
-                int var = new Random().Next(Entry.Config.EventMinimal, Entry.Config.EventMax);
-                if (var == Entry.Config.EventRequirement && !Entry.ArmedIds.Contains(p2.Handle) && !(p2.Model.Name == "s_m_y_cop_01" || p2.Model.Name == "s_f_y_cop_01") && !p2.IsPlayer)
+                if (GameManager.peds.Count == 10000)
                 {
-                    EventManager.StartRandomEvent(p2);
+                    Logger.Trace("Game", "Cleaning IDs");
+                    GameManager.peds.Clear();
                 }
-
-            }
-            if (GameManager.peds.Count == 10000)
-            {
-                Logger.Trace("Game", "Cleaning IDs");
-                GameManager.peds.Clear();
-            }
-            if (Entry.ArmedIds.Count == 1000)
-            {
-                Logger.Trace("Game", "Cleaning armed ids");
-                Entry.ArmedIds.Clear();
-            }
-            if (killedPeds.Count == 100)
-            {
-                Logger.Trace("Game", "Cleaning killed ids");
-                killedPeds.Clear();
+                if (Entry.ArmedIds.Count == 1000)
+                {
+                    Logger.Trace("Game", "Cleaning armed ids");
+                    Entry.ArmedIds.Clear();
+                }
+                if (killedPeds.Count == 100)
+                {
+                    Logger.Trace("Game", "Cleaning killed ids");
+                    killedPeds.Clear();
+                }
+                
             }
         }
 

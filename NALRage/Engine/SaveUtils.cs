@@ -12,7 +12,7 @@ namespace NALRage.Engine
     {
         internal static class SaveManager
         {
-            static readonly string[] WeatherNames = {
+            private static readonly string[] WeatherNames = {
             "EXTRASUNNY",
             "CLEAR",
             "CLOUDS",
@@ -43,7 +43,6 @@ namespace NALRage.Engine
                         }
                     }
                     return WeatherType.ExtraSunny;
-
                 }
 
                 set
@@ -76,7 +75,7 @@ namespace NALRage.Engine
                 }
                 SaveFile sf;
                 sf = JsonConvert.DeserializeObject<SaveFile>(File.ReadAllText("NAL\\Save.json"));
-                if(sf.Version != 3)
+                if (sf.Version != 3)
                 {
                     Game.DisplayNotification("Unsupported save file.");
                     return;
@@ -91,9 +90,9 @@ namespace NALRage.Engine
                 Common.Difficulty = sf.CurrentDifficulty;
                 GameContentUtils.SetRelationship(sf.CurrentDifficulty);
                 Game.LocalPlayer.Character.Inventory.Weapons.Clear();
-                if(sf.Weapons.Length != 0)
+                if (sf.Weapons.Length != 0)
                 {
-                    foreach(SaveWeaponDescriptor swd in sf.Weapons)
+                    foreach (SaveWeaponDescriptor swd in sf.Weapons)
                     {
                         swd.AddToPlayer();
                     }
@@ -103,7 +102,7 @@ namespace NALRage.Engine
 
             internal static void Save(bool blackout)
             {
-                if(!File.Exists("Newtonsoft.Json.dll"))
+                if (!File.Exists("Newtonsoft.Json.dll"))
                 {
                     Game.DisplayNotification("~h~WARNING!~s~ Place ~b~Newtonsoft.Json~s~ in game folder to make save/load function work.");
                     Game.DisplayNotification("This action ~g~does not~s~ requires a game or plugin restart.");
@@ -122,7 +121,7 @@ namespace NALRage.Engine
                 sf.PlayerHealth = Game.LocalPlayer.Character.Health;
                 sf.PlayerArmor = Game.LocalPlayer.Character.Armor;
                 List<SaveWeaponDescriptor> wds = new List<SaveWeaponDescriptor>();
-                foreach(WeaponDescriptor wd in Game.LocalPlayer.Character.Inventory.Weapons)
+                foreach (WeaponDescriptor wd in Game.LocalPlayer.Character.Inventory.Weapons)
                 {
                     SaveWeaponDescriptor swd = new SaveWeaponDescriptor(wd);
                     wds.Add(swd);

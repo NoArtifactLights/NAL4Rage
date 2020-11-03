@@ -1,6 +1,6 @@
-﻿using System;
-using NALRage.Entities.Serialization;
+﻿using NALRage.Entities.Serialization;
 using Rage;
+using System;
 
 namespace NALRage.Engine.Modification
 {
@@ -10,7 +10,7 @@ namespace NALRage.Engine.Modification
         private static Configuration configuration;
 
         internal static Configuration Config => configuration;
-        
+
         internal static void GenerateConfig()
         {
             configuration = new Configuration(2);
@@ -25,7 +25,7 @@ namespace NALRage.Engine.Modification
 
         internal static void Init()
         {
-            if(!initializationFile.Exists()) GenerateConfig();
+            if (!initializationFile.Exists()) GenerateConfig();
             configuration = new Configuration();
             try
             {
@@ -40,7 +40,7 @@ namespace NALRage.Engine.Modification
                 CrashReporter cr = new CrashReporter(e);
                 cr.ReportAndCrashPlugin();
             }
-            
+
             if (configuration.Version != 2)
             {
                 initializationFile.Delete();

@@ -25,12 +25,14 @@ namespace NALRage.Engine
                     Game.SetRelationshipBetweenRelationshipGroups(RelationshipGroup.AmbientGangBallas, RelationshipGroup.AmbientGangFamily, Relationship.Hate);
                     Game.SetRelationshipBetweenRelationshipGroups(CivilianMale, RelationshipGroup.Player, Relationship.Hate);
                     break;
+
                 case Difficulty.Normal:
                     Game.SetRelationshipBetweenRelationshipGroups(RelationshipGroup.AmbientGangFamily, RelationshipGroup.AmbientGangBallas, Relationship.Hate);
                     Game.SetRelationshipBetweenRelationshipGroups(RelationshipGroup.AmbientGangBallas, RelationshipGroup.AmbientGangFamily, Relationship.Hate);
                     Game.SetRelationshipBetweenRelationshipGroups(CivilianMale, RelationshipGroup.Player, Relationship.Hate);
                     Game.SetRelationshipBetweenRelationshipGroups(CivilianMale, RelationshipGroup.Cop, Relationship.Hate);
                     break;
+
                 case Difficulty.Hard:
                     Game.SetRelationshipBetweenRelationshipGroups(RelationshipGroup.AmbientGangFamily, RelationshipGroup.AmbientGangBallas, Relationship.Hate);
                     Game.SetRelationshipBetweenRelationshipGroups(RelationshipGroup.AmbientGangBallas, RelationshipGroup.AmbientGangFamily, Relationship.Hate);
@@ -41,6 +43,7 @@ namespace NALRage.Engine
                     Game.SetRelationshipBetweenRelationshipGroups(RelationshipGroup.AmbientGangBallas, CivilianMale, Relationship.Hate);
                     Game.SetRelationshipBetweenRelationshipGroups(RelationshipGroup.AmbientGangFamily, CivilianMale, Relationship.Hate);
                     break;
+
                 case Difficulty.Nether:
                     Game.SetRelationshipBetweenRelationshipGroups(RelationshipGroup.AmbientGangFamily, RelationshipGroup.AmbientGangBallas, Relationship.Hate);
                     Game.SetRelationshipBetweenRelationshipGroups(RelationshipGroup.AmbientGangBallas, RelationshipGroup.AmbientGangFamily, Relationship.Hate);
@@ -57,7 +60,7 @@ namespace NALRage.Engine
 
         internal static void EquipWeapon(this Ped ped)
         {
-            if(!ped.Exists())
+            if (!ped.Exists())
             {
                 return;
             }
@@ -86,7 +89,7 @@ namespace NALRage.Engine
                     break;
             }
             ped.Inventory.GiveNewWeapon(wp, short.MaxValue, true);
-            if(ped.IsInAnyVehicle(false))
+            if (ped.IsInAnyVehicle(false))
             {
                 ped.Tasks.LeaveVehicle(ped.CurrentVehicle, LeaveVehicleFlags.LeaveDoorOpen);
                 GameFiber.Wait(1);

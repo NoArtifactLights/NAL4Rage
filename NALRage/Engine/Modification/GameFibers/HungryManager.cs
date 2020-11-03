@@ -13,12 +13,27 @@ namespace NALRage.Engine.Modification.GameFibers
 
         internal static void Init()
         {
-            hungryBar = new BarTimerBar("Hungry"); 
+            hungryBar = new BarTimerBar("Hungry");
+            pool.Add(hungryBar);
         }
+
+        internal static void FiberNew()
+        {
+            Init();
+            while(true)
+            {
+                GameFiber.Yield();
+                pool.Draw();
+            }
+        }
+
+        internal static float Precentage => hungry * 10;
 
         internal static void Fiber()
         {
             GameFiber.Sleep(1499);
+            if (hungry < 10f) hungry = 10f;
+            
             if(hungry <= 2.5f)
             {
                 Game.LocalPlayer.Character.Health--;

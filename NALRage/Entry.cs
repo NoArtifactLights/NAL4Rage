@@ -13,7 +13,9 @@ using Rage.Attributes;
 using Rage.Native;
 using System;
 using System.Collections.Generic;
-                                                                                                                                     // Experimental, May Fail!
+using System.Drawing;
+using System.Runtime.CompilerServices;
+// Experimental, May Fail!
 [assembly: Plugin("NoArtifactLights", Author = "RelaperCrystal", Description = "The NoArtifactLights Project for RAGE Plug-in Hook", EntryPoint = "NALRage.Entry.Main", PrefersSingleInstance = true)]
 
 namespace NALRage
@@ -25,7 +27,7 @@ namespace NALRage
         
         internal static Configuration Config;
         private static GameFiber process;
-        private static bool enabled = true; // TODO deprecate this
+        internal static bool debugScreen;
 
         [ConsoleCommand(Name = "ReloadConfigs", Description = "Reloads configuration of NAL.")]
         private static void GetConfig()
@@ -61,12 +63,14 @@ namespace NALRage
                 GameFiber menu;
                 menu = GameFiber.StartNew(MenuManager.FiberInit);
                 Logger.Info("Main", "GameFiber > GameManager.ProcessEach100 > Creating & Starting Instance");
-                process = GameFiber.ExecuteNewFor(GameManager.ProcessEach100, -1);
+                process = GameFiber.StartNew(GameManager.ProcessEach100);
                 GameFiber.Sleep(5000);
                 Game.FadeScreenIn(1000);
                 Logger.Info("Main", "DONE!");
                 Game.DisplayHelp("Welcome to NoArtifactLights!");
                 Game.DisplayNotification("You have currently playing the ~h~RAGE Plug-in Hook~s~ version.");
+                
+                Game.RawFrameRender += Game_RawFrameRender;
                 GameFiber.Hibernate();
             }
             catch(Exception ex)
@@ -74,6 +78,16 @@ namespace NALRage
                 CrashReporter cr = new CrashReporter(ex);
                 cr.ReportAndCrashPlugin();
             }
+        }
+
+        private static void Game_RawFrameRender(object sender, GraphicsEventArgs e)
+        {
+            if(debugScreen)
+            {
+                e.Graphics.DrawText("NoArtifactLights for Rage", "Courier New", 20f, new PointF(20, 20), Color.Red);
+                e.Graphics.DrawText("Current event status: ", "Courier New", 20f, new PointF(20, 50), Color.Red);
+            }
+            e.Graphics.DrawText("Temporary Hungry: " + HungryManager.Precentage, "Courier New", 12f, new PointF(20, 20), Color.Red);
         }
     }
 }

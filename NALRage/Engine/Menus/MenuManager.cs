@@ -85,19 +85,19 @@ namespace NALRage.Engine.Menus
             itemHamburger = new UIMenuItem("Hamburger");
             foodMenu.AddItem(itemHamburger);
             Pool.Add(foodMenu);
-            while(true)
+            while (true)
             {
                 GameFiber.Yield();
                 Pool.ProcessMenus();
-                if(!noticed)
+                if (!noticed)
                 {
                     noticed = true;
                     //Game.DisplayNotification("NoArtifactLights ~b~has been loaded~s~. ~g~Enjoy!~s~");
                     //Game.LogTrivial("MenuManager thread has entered loop. Enjoy!");
                 }
-                if(!buyMenu.Visible)
+                if (!buyMenu.Visible)
                 {
-                    if(Game.IsKeyDown(Keys.N))
+                    if (Game.IsKeyDown(Keys.N))
                     {
                         Game.LogTrivial("Key is N. hit!");
                         itemCash.SetRightLabel(Common.Cash + "$");
@@ -105,12 +105,12 @@ namespace NALRage.Engine.Menus
                         itemDifficulty.SetRightLabel(Common.Difficulty.ToString());
                         mainMenu.Visible = !mainMenu.Visible;
                     }
-                    if(Game.IsKeyDown(Keys.E) && WeaponShopUtils.DistanceToAmmu())
+                    if (Game.IsKeyDown(Keys.E) && WeaponShopUtils.DistanceToAmmu())
                     {
                         buyMenu.Visible = !buyMenu.Visible;
                     }
                 }
-                if(WeaponShopUtils.DistanceToAmmu())
+                if (WeaponShopUtils.DistanceToAmmu())
                 {
                     Game.DisplayHelp("Press ~INPUT_CONTEXT~ to buy weapon.");
                 }
@@ -126,7 +126,7 @@ namespace NALRage.Engine.Menus
 
         private static void ItemCop_Activated(UIMenu sender, UIMenuItem selectedItem)
         {
-            ChangeModel("s_m_y_cop_01", selectedItem);            
+            ChangeModel("s_m_y_cop_01", selectedItem);
         }
 
         private static void ChangeModel(string model, UIMenuItem origin)
@@ -140,9 +140,10 @@ namespace NALRage.Engine.Menus
         }
 
         private static void ItemBodyArmor_Activated(UIMenu sender, UIMenuItem selectedItem) => WeaponShopUtils.SellArmor(70, 350);
-        private static void ItemPumpShotgun_Activated(UIMenu sender, UIMenuItem selectedItem) => WeaponShopUtils.SellWeapon(200, 50, WeaponHash.PumpShotgun);
-        private static void ItemPistol_Activated(UIMenu sender, UIMenuItem selectedItem) => WeaponShopUtils.SellWeapon(100, 100, WeaponHash.Pistol);
 
+        private static void ItemPumpShotgun_Activated(UIMenu sender, UIMenuItem selectedItem) => WeaponShopUtils.SellWeapon(200, 50, WeaponHash.PumpShotgun);
+
+        private static void ItemPistol_Activated(UIMenu sender, UIMenuItem selectedItem) => WeaponShopUtils.SellWeapon(100, 100, WeaponHash.Pistol);
 
         private static void ItemCallCops_Activated(UIMenu sender, UIMenuItem selectedItem)
         {

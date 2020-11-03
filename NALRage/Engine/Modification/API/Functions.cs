@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
-using NALRage.Entities;
+﻿using NALRage.Entities;
 using Rage;
+using System;
 
 namespace NALRage.Engine.Modification.API
 {
@@ -12,9 +11,9 @@ namespace NALRage.Engine.Modification.API
     {
         public static void SetPedAsWeaponed(Ped ped)
         {
-            if(!ped.Exists()) throw new ArgumentNullException(nameof(ped));
+            if (!ped.Exists()) throw new ArgumentNullException(nameof(ped));
             if (Entry.ArmedIds.Contains(ped.Handle)) return;
-            
+
             Entry.ArmedIds.Add(ped.Handle);
         }
 
@@ -30,17 +29,21 @@ namespace NALRage.Engine.Modification.API
             switch (Common.Difficulty)
             {
                 default:
-                    wp = WeaponHash.Pistol; 
+                    wp = WeaponHash.Pistol;
                     break;
+
                 case Difficulty.Easy:
                     wp = WeaponHash.PumpShotgun;
                     break;
+
                 case Difficulty.Normal:
                     wp = WeaponHash.MicroSMG;
                     break;
+
                 case Difficulty.Hard:
                     wp = WeaponHash.CarbineRifle;
                     break;
+
                 case Difficulty.Nether:
                     wp = WeaponHash.RPG;
                     break;
@@ -51,8 +54,6 @@ namespace NALRage.Engine.Modification.API
                 WeaponDescriptor weapon = ped.Inventory.Weapons.Add(wp);
                 weapon.Ammo = 10000;
             }
-            
-           
         }
     }
 }

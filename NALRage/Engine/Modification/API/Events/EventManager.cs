@@ -36,7 +36,7 @@ namespace NALRage.Engine.Modification.API.Events
                 instance.Start(p);
                 //processing.Add(instance);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Logger.Error("EventManager", "Error while starting event");
                 Logger.Error("EventManager", ex.ToString());
