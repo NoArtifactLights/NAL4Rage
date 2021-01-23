@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Engine\Common.cs" />
+    <Compile Include="Engine\Extensions\PluginManager.cs" />
     <Compile Include="Engine\GameContentUtils.cs" />
     <Compile Include="Engine\HungryUtils.cs" />
     <Compile Include="Engine\Menus\MenuManager.cs" />
@@ -56,7 +57,9 @@
     <Compile Include="Engine\Modification\API\Events\EventManager.cs" />
     <Compile Include="Engine\Modification\API\Events\Integrated\ArmedPed.cs" />
     <Compile Include="Engine\Modification\API\Functions.cs" />
+    <Compile Include="Engine\Modification\API\IProcessable.cs" />
     <Compile Include="Engine\Modification\API\Logger.cs" />
+    <Compile Include="Engine\Modification\API\Plugin.cs" />
     <Compile Include="Engine\Modification\ConfigurationHandler.cs" />
     <Compile Include="Engine\Modification\CrashReporter.cs" />
     <Compile Include="Engine\Modification\GameFibers\GameManager.cs" />

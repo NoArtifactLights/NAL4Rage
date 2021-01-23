@@ -8,6 +8,8 @@ namespace NALRage.Engine.Modification.API
 {
     public abstract class Plugin : IProcessable
     {
-
+        public abstract void Finally();
+        public abstract void OnStart();
+        public abstract void Process();
     }
 }

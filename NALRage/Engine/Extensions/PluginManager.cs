@@ -15,6 +15,10 @@ namespace NALRage.Engine.Extensions
 
         internal static void LoadPlugins()
         {
+            if (!Directory.Exists("plugins\\NAL"))
+            {
+                Logger.Info("PluginManager", "NAL plug-ins folder does not exist. Aborting.");
+            }
             string[] files = Directory.GetFiles("plugins\\NAL\\", "*.dll");
             foreach (var file in files)
             {
