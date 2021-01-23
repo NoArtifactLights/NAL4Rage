@@ -22,8 +22,7 @@ namespace NALRage.Engine.Modification.GameFibers
                 {
                     Entry.debugScreen = !Entry.debugScreen;
                 }
-                GameFiber.Sleep(99);
-                GameFiber.Yield();
+                GameFiber.Sleep(100);
                 Ped[] peds = World.GetAllPeds();
                 foreach (Ped p in peds)
                 {
