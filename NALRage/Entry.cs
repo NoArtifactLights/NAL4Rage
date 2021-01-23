@@ -2,6 +2,7 @@
 // Licensed under GNU General Public License version 3.
 
 using NALRage.Engine;
+using NALRage.Engine.Extensions;
 using NALRage.Engine.Menus;
 using NALRage.Engine.Modification;
 using NALRage.Engine.Modification.API;
@@ -66,6 +67,14 @@ namespace NALRage
                 process = GameFiber.StartNew(GameManager.ProcessEach100);
                 GameFiber.Sleep(5000);
                 Game.FadeScreenIn(1000);
+#if DEBUG
+                Logger.Info("Main", "Loading Plug-ins");
+                PluginManager.LoadPlugins();
+#endif
+#if DEBUG
+                Game.DisplayHelp("You are in debug mode. Please attach a debugger.");
+                Debug.AttachAndBreak();
+#endif
                 Logger.Info("Main", "DONE!");
                 Game.DisplayHelp("Welcome to NoArtifactLights!");
                 Game.DisplayNotification("You have currently playing the ~h~RAGE Plug-in Hook~s~ version.");

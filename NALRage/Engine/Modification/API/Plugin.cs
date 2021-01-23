@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace NALRage.Engine.Modification.API
 {
-    public abstract class Plugin
+    public abstract class Plugin : IProcessable
     {
+
     }
 }
