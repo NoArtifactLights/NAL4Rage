@@ -4,6 +4,7 @@ using Rage;
 using System;
 using System.Collections.Generic;
 using NALRage.Engine.Modification.API;
+using Rage.Attributes;
 
 namespace NALRage.Engine.Modification.GameFibers
 {
@@ -12,7 +13,14 @@ namespace NALRage.Engine.Modification.GameFibers
         private static List<PoolHandle> peds = new List<PoolHandle>();
         // private static List<PoolHandle> armedPeds = new List<PoolHandle>();
         private static List<PoolHandle> killedPeds = new List<PoolHandle>();
+        internal static bool ForceEvent;
 
+        [ConsoleCommand(Description = "Forces a event to be started in next NAL tick.")]
+        public static void ForceStartEvent()
+        {
+            ForceEvent = true;
+        }
+        
         internal static void ProcessEach100()
         {
             
@@ -54,9 +62,10 @@ namespace NALRage.Engine.Modification.GameFibers
                     // Avoid animals to be flagged
                     if (!p2.IsHuman) continue;
 
-                    int var = new Random().Next(9, 889);
-                    if (var == 89 && !Entry.ArmedIds.Contains(p2.Handle) && !(p2.Model.Name == "s_m_y_cop_01" || p2.Model.Name == "s_f_y_cop_01") && !p2.IsPlayer)
+                    int var = new Random().Next(9, 109);
+                    if ((var == 89 || ForceEvent) && !Entry.ArmedIds.Contains(p2.Handle) && !(p2.Model.Name == "s_m_y_cop_01" || p2.Model.Name == "s_f_y_cop_01") && !p2.IsPlayer)
                     {
+                        ForceEvent = false;
                         EventManager.StartRandomEvent(p2);
                     }
 

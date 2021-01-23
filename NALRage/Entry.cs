@@ -6,6 +6,8 @@ using NALRage.Engine.Extensions;
 using NALRage.Engine.Menus;
 using NALRage.Engine.Modification;
 using NALRage.Engine.Modification.API;
+using NALRage.Engine.Modification.API.Events;
+using NALRage.Engine.Modification.API.Events.Integrated;
 using NALRage.Engine.Modification.GameFibers;
 using NALRage.Entities;
 using NALRage.Entities.Serialization;
@@ -16,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using System.Threading;
 // Experimental, May Fail!
 [assembly: Plugin("NoArtifactLights", Author = "RelaperCrystal", Description = "The NoArtifactLights Project for RAGE Plug-in Hook", EntryPoint = "NALRage.Entry.Main", PrefersSingleInstance = true)]
 
@@ -25,6 +28,7 @@ namespace NALRage
     {
         // TODO make this for game manager to use
         internal static List<uint> ArmedIds = new List<uint>();
+        internal static List<Blip> Blips = new List<Blip>();
         
         internal static Configuration Config;
         private static GameFiber process;
@@ -51,6 +55,11 @@ namespace NALRage
                 NativeFunction.Natives.x0888C3502DBBEEF5(); // ON_ENTER_MP
                 NativeFunction.Natives.x9BAE5AD2508DF078(1); // SET_INSTANCE_PRIORITY_MODE
 
+#if DEBUG
+                Game.DisplayHelp("You are in debug mode. Please attach a debugger.");
+                Debug.AttachAndBreak();
+#endif
+
                 Logger.Info("Main", "Map loaded. Changing player model...");
                 Game.LocalPlayer.Model = "a_m_m_bevhills_02";
                 Logger.Info("Main", "Changed the model, setting up game");
@@ -59,7 +68,9 @@ namespace NALRage
                 Game.LocalPlayer.Character.Inventory.GiveNewWeapon(WeaponHash.Pistol, 50, true);
                 Game.MaxWantedLevel = 0;
                 GameContentUtils.SetRelationship(Difficulty.Initial);
-                NativeFunction.Natives.x1268615ACE24D504(true);
+                Functions.BlackoutStatus = true;
+
+                EventManager.RegisterEvent(typeof(ArmedPed));
                 Logger.Info("Main", "GameFiber > MenuManager.FiberInit > Creating & Starting Instance");
                 GameFiber menu;
                 menu = GameFiber.StartNew(MenuManager.FiberInit);
@@ -71,10 +82,6 @@ namespace NALRage
                 Logger.Info("Main", "Loading Plug-ins");
                 PluginManager.LoadPlugins();
 #endif
-#if DEBUG
-                Game.DisplayHelp("You are in debug mode. Please attach a debugger.");
-                Debug.AttachAndBreak();
-#endif
                 Logger.Info("Main", "DONE!");
                 Game.DisplayHelp("Welcome to NoArtifactLights!");
                 Game.DisplayNotification("You have currently playing the ~h~RAGE Plug-in Hook~s~ version.");
@@ -82,10 +89,26 @@ namespace NALRage
                 Game.RawFrameRender += Game_RawFrameRender;
                 GameFiber.Hibernate();
             }
+            catch(ThreadAbortException)
+            {
+                Logger.Info("Main", "Someone is aborting our thread");
+            }
             catch(Exception ex)
             {
                 CrashReporter cr = new CrashReporter(ex);
                 cr.ReportAndCrashPlugin();
+            }
+        }
+
+        public static void OnUnload(bool unk)
+        {
+            Game.DisplayNotification(unk.ToString());
+            foreach (var blip in Blips)
+            {
+                if (blip)
+                {
+                    blip.Delete();
+                }
             }
         }
 

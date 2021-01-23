@@ -31,7 +31,7 @@ namespace NALRage.Engine.Modification.GameFibers
 
         internal static void Fiber()
         {
-            GameFiber.Sleep(1499);
+            GameFiber.Sleep(1500);
             if (hungry < 10f) hungry = 10f;
             
             if(hungry <= 2.5f)

@@ -1,4 +1,5 @@
-﻿using Rage;
+﻿using System.Drawing;
+using Rage;
 
 namespace NALRage.Engine.Modification.API.Events.Integrated
 {
@@ -8,8 +9,13 @@ namespace NALRage.Engine.Modification.API.Events.Integrated
         {
             if (!Entry.ArmedIds.Contains(p.Handle))
             {
-                p.EquipWeapon();
-                Entry.ArmedIds.Add(p.Handle);
+                Blip b = p.AttachBlip();
+                b.Color = Color.Red;
+                b.Sprite = BlipSprite.Enemy;
+                b.Scale = 0.5f;
+                Functions.MarkBlipDeletion(b);
+                Functions.EquipPedWeapon(p);
+                Functions.AddBountyToPed(p);
             }
         }
 

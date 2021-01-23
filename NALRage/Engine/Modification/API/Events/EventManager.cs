@@ -10,8 +10,8 @@ namespace NALRage.Engine.Modification.API.Events
 
         internal static void RegisterEvent(Type @event)
         {
-            if (@event is null) return;
-            if (!@event.IsAssignableFrom(typeof(Event))) return;
+            if (@event == null) return;
+            if (!typeof(Event).IsAssignableFrom(@event)) return;
             Game.LogTrivial("Registering event " + @event.Name + " from assembly " + @event.Assembly.GetName().CodeBase);
             Events.Add(@event);
         }
@@ -25,8 +25,7 @@ namespace NALRage.Engine.Modification.API.Events
             if (Events.Count == 0) return;
             if (IsDisabled) return;
             Logger.Trace("EventManager", "Picking event");
-            var r = new Random();
-            var result = r.Next(0, Events.Count + 1); // this may prevent picker picking the last event
+            var result = MathHelper.GetRandomInteger(0, Events.Count - 1); // this may prevent picker picking the last event
             if (p.IsInAnyVehicle(false)) p.Tasks.LeaveVehicle(LeaveVehicleFlags.BailOut);
             var obj = Activator.CreateInstance(Events[result]);
             var instance = (Event)obj;

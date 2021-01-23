@@ -1,6 +1,7 @@
 ﻿using NALRage.Engine.Modification.API.Events;
 using NALRage.Entities;
 using Rage;
+using Rage.Exceptions;
 using Rage.Native;
 using System;
 
@@ -54,6 +55,18 @@ namespace NALRage.Engine.Modification.API
             if (type is null) throw new ArgumentNullException(nameof(type));
             if (!type.IsAssignableFrom(typeof(Event))) throw new ArgumentException("The type of the argument is invalid. It must inherit Event.", nameof(type));
             EventManager.RegisterEvent(type);
+        }
+
+        /// <summary>
+        /// Marks a <see cref="Blip"/> to be deleted when the mod is unloading.
+        /// </summary>
+        /// <param name="blip">The blip.</param>
+        public static void MarkBlipDeletion(Blip blip)
+        {
+            if (blip == null) throw new ArgumentNullException(nameof(blip));
+            if (!blip.IsValid()) throw new InvalidHandleableException(blip);
+            if (Entry.Blips.Contains(blip)) return;
+            Entry.Blips.Add(blip);
         }
 
         /// <summary>
