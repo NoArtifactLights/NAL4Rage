@@ -57,7 +57,7 @@ namespace NALRage
 
 #if DEBUG
                 Game.DisplayHelp("You are in debug mode. Please attach a debugger.");
-                Debug.AttachAndBreak();
+                //Debug.AttachAndBreak();
 #endif
 
                 Logger.Info("Main", "Map loaded. Changing player model...");
@@ -76,6 +76,8 @@ namespace NALRage
                 menu = GameFiber.StartNew(MenuManager.FiberInit);
                 Logger.Info("Main", "GameFiber > GameManager.ProcessEach100 > Creating & Starting Instance");
                 process = GameFiber.StartNew(GameManager.ProcessEach100);
+                Logger.Info("Main", "GameFiber > HungryManager.FiberNew > Creating & Start Instance");
+                HungryUtils.StartFiber();
                 GameFiber.Sleep(5000);
                 Game.FadeScreenIn(1000);
 #if DEBUG
@@ -114,7 +116,7 @@ namespace NALRage
 
         private static void Game_RawFrameRender(object sender, GraphicsEventArgs e)
         {
-            if(debugScreen)
+            if (debugScreen)
             {
                 e.Graphics.DrawText("NoArtifactLights for Rage", "Courier New", 20f, new PointF(20, 20), Color.Red);
                 e.Graphics.DrawText("Current event status: ", "Courier New", 20f, new PointF(20, 50), Color.Red);

@@ -6,10 +6,12 @@ namespace NALRage.Engine
     internal static class HungryUtils
     {
         internal static GameFiber Fiber;
+        internal static GameFiber Drawing;
 
         internal static void StartFiber()
         {
-            Fiber = GameFiber.ExecuteNewFor(HungryManager.Fiber, -1);
+            Fiber = GameFiber.StartNew(HungryManager.FiberNew);
+            Drawing = GameFiber.StartNew(HungryManager.DrawingFiber);
         }
     }
 }

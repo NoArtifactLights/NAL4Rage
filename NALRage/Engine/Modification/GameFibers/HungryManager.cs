@@ -6,7 +6,7 @@ namespace NALRage.Engine.Modification.GameFibers
     // TODO test
     internal static class HungryManager
     {
-        private static float hungry;
+        private static float hungry = 10f;
 
         private static TimerBarPool pool = new TimerBarPool();
         private static BarTimerBar hungryBar;
@@ -17,13 +17,21 @@ namespace NALRage.Engine.Modification.GameFibers
             pool.Add(hungryBar);
         }
 
-        internal static void FiberNew()
+        internal static void DrawingFiber()
         {
-            Init();
-            while(true)
+            while (true)
             {
                 GameFiber.Yield();
                 pool.Draw();
+            }
+        }
+
+        internal static void FiberNew()
+        {
+            Init();
+            while (true)
+            {
+                Fiber();
             }
         }
 
