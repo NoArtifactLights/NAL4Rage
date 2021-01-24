@@ -24,12 +24,12 @@ namespace NALRage.Engine.Modification.GameFibers
         internal static void ProcessEach100()
         {
             
-            while(true)
+            while (true)
             {
-                if(Game.IsKeyDown(System.Windows.Forms.Keys.F5))
-                {
-                    Entry.debugScreen = !Entry.debugScreen;
-                }
+                //if (Game.IsKeyDown(System.Windows.Forms.Keys.F5))
+                //{
+                //    Entry.debugScreen = !Entry.debugScreen;
+                //}
                 GameFiber.Sleep(100);
                 Ped[] peds = World.GetAllPeds();
                 foreach (Ped p in peds)
@@ -56,6 +56,7 @@ namespace NALRage.Engine.Modification.GameFibers
                         DetermineDiff();
                     }
                 }
+
                 foreach (Ped p2 in peds)
                 {
                     if (!p2.Exists()) continue;
@@ -70,6 +71,7 @@ namespace NALRage.Engine.Modification.GameFibers
                     }
 
                 }
+                EventManager.Process();
                 if (GameManager.peds.Count == 10000)
                 {
                     Logger.Trace("Game", "Cleaning IDs");

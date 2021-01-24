@@ -32,7 +32,7 @@ namespace NALRage
         
         internal static Configuration Config;
         private static GameFiber process;
-        internal static bool debugScreen;
+        //internal static bool debugScreen;
 
         [ConsoleCommand(Name = "ReloadConfigs", Description = "Reloads configuration of NAL.")]
         private static void GetConfig()
@@ -116,12 +116,12 @@ namespace NALRage
 
         private static void Game_RawFrameRender(object sender, GraphicsEventArgs e)
         {
-            if (debugScreen)
-            {
-                e.Graphics.DrawText("NoArtifactLights for Rage", "Courier New", 20f, new PointF(20, 20), Color.Red);
-                e.Graphics.DrawText("Current event status: ", "Courier New", 20f, new PointF(20, 50), Color.Red);
-            }
-            e.Graphics.DrawText("Temporary Hungry: " + HungryManager.Precentage, "Courier New", 12f, new PointF(20, 20), Color.Red);
+            //if (debugScreen)
+            //{
+            //    e.Graphics.DrawText("NoArtifactLights for Rage", "Courier New", 20f, new PointF(20, 20), Color.Red);
+            //    e.Graphics.DrawText("Current event status: ", "Courier New", 20f, new PointF(20, 50), Color.Red);
+            //}
+            //e.Graphics.DrawText("Temporary Hungry: " + HungryManager.Precentage, "Courier New", 12f, new PointF(20, 20), Color.Red);
         }
     }
 }

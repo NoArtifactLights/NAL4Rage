@@ -3,25 +3,42 @@ using Rage;
 
 namespace NALRage.Engine.Modification.API.Events.Integrated
 {
+    /// <summary>
+    /// The example <see cref="ArmedPed"/> event, featuring a random ped equipped with a weapon.
+    /// </summary>
     public class ArmedPed : Event
     {
-        public override void Start(Ped p)
+        private Blip blip;
+
+        public override void OnStart()
         {
-            if (!Entry.ArmedIds.Contains(p.Handle))
+            if (!Entry.ArmedIds.Contains(Ped.Handle))
             {
-                Blip b = p.AttachBlip();
-                b.Color = Color.Red;
+                Blip b = Ped.AttachBlip();
                 b.Sprite = BlipSprite.Enemy;
+                b.Color = Color.Red;
                 b.Scale = 0.5f;
                 Functions.MarkBlipDeletion(b);
-                Functions.EquipPedWeapon(p);
-                Functions.AddBountyToPed(p);
+                Functions.EquipPedWeapon(Ped);
+                Functions.AddBountyToPed(Ped);
             }
         }
 
         public override void Process()
         {
-            throw new System.NotImplementedException();
+            if (!Ped.Exists() || Ped.IsDead)
+            {
+                Finally();
+            }
+        }
+
+        public override void Finally()
+        {
+            if (blip)
+            {
+                blip.Delete();
+            }
+            base.Finally();
         }
     }
 }

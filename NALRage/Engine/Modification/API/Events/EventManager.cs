@@ -7,6 +7,7 @@ namespace NALRage.Engine.Modification.API.Events
     internal static class EventManager
     {
         private static readonly List<Type> Events = new List<Type>();
+        private static readonly List<Event> processingEvents = new List<Event>();
 
         internal static void RegisterEvent(Type @event)
         {
@@ -17,6 +18,21 @@ namespace NALRage.Engine.Modification.API.Events
         }
 
         internal static bool IsDisabled { private get; set; } = false;
+
+        internal static void Process()
+        {
+            for (int i = 0; i < processingEvents.Count; i++)
+            {
+                Event ev = processingEvents[i];
+                if (ev.IsEnded)
+                {
+                    processingEvents.Remove(ev);
+                    continue;
+                }
+                
+                ev.Process();
+            }
+        }
 
         internal static void StartRandomEvent(Ped p)
         {
@@ -32,8 +48,9 @@ namespace NALRage.Engine.Modification.API.Events
             Logger.Trace("EventManager", "Starting " + Events[result].Name + " event");
             try
             {
-                instance.Start(p);
-                //processing.Add(instance);
+                instance.SetPed(p);
+                instance.OnStart();
+                processingEvents.Add(instance);
             }
             catch (Exception ex)
             {

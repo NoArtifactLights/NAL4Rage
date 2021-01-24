@@ -13,17 +13,14 @@ namespace NALRage.Engine.Modification.GameFibers
         private static TimerBarPool pool = new TimerBarPool();
         private static BarTimerBar hungryBar;
 
-        [ConsoleCommand]
+        [ConsoleCommand("Refills the hungry value.")]
         public static void RefillHungry()
         {
             hungry = 10f;
         }
 
-        [ConsoleCommand]
-        public static void GetHungryRawValue()
-        {
-            Game.Console.Print(hungry.ToString());
-        }
+        [ConsoleCommand("Prints the raw value of the hungry on the game console.")]
+        public static void HungryRaw() => Game.Console.Print(hungry.ToString());
 
         internal static void Init()
         {
