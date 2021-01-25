@@ -1,0 +1,13 @@
+# 若要了解有关 .editorconfig 的详细信息，请参阅 https://aka.ms/editorconfigdocs
+root = true
+
+# All files
+[*]
+indent_style = space
+charset = utf-8 # so we don't have BOMs
+
+# Xml files
+[*.xml]
+indent_size = 2
+
+

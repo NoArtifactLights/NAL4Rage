@@ -1,4 +1,4 @@
-﻿using NALRage.Engine.Modification.API.Events;
+using NALRage.Engine.Modification.API.Events;
 using NALRage.Entities;
 using Rage;
 using System;
@@ -123,9 +123,9 @@ namespace NALRage.Engine.Modification.GameFibers
 
                 case 1500:
                     Logger.Info("Game", "Difficulty has been altered to Nether");
-                    Common.Difficulty = Difficulty.Nether;
+                    Common.Difficulty = Difficulty.Extreme;
                     Common.BigMessage.MessageInstance.ShowSimpleShard("Difficulty Changed", "Difficulty is changed to Nether.");
-                    GameContentUtils.SetRelationship(Difficulty.Nether);
+                    GameContentUtils.SetRelationship(Difficulty.Extreme);
                     break;
             }
         }

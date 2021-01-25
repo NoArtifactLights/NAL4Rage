@@ -101,7 +101,7 @@ namespace NALRage.Engine.Modification.API
                     wp = WeaponHash.CarbineRifle;
                     break;
 
-                case Difficulty.Nether:
+                case Difficulty.Extreme:
                     wp = WeaponHash.RPG;
                     break;
             }

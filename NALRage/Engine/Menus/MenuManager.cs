@@ -1,4 +1,4 @@
-﻿using Rage;
+using Rage;
 using Rage.Native;
 using RAGENativeUI;
 using RAGENativeUI.Elements;
@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace NALRage.Engine.Menus
 {
+    /// <summary>
+    /// The general handler thread for all menus in NAL.
+    /// </summary>
     public static class MenuManager
     {
         private static MenuPool Pool { get; set; } = new MenuPool();
@@ -32,7 +35,7 @@ namespace NALRage.Engine.Menus
         private static UIMenuItem itemClassic;
         private static bool noticed;
 
-        public static void FiberInit()
+        internal static void FiberInit()
         {
             mainMenu = new UIMenu("NAL", "Main Menu");
             itemLights = new UIMenuCheckboxItem("Blackout", true, "Sets whether to turn off power of whole San Andreas.");

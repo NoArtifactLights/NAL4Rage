@@ -1,4 +1,4 @@
-﻿using Rage;
+using Rage;
 using RAGENativeUI.Elements;
 using System;
 using System.Collections.Generic;
@@ -6,8 +6,17 @@ using System.Linq;
 
 namespace NALRage.Engine
 {
+    /// <summary>
+    /// Provides methods to handle weapons.
+    /// </summary>
     public static class WeaponShopUtils
     {
+        /// <summary>
+        /// Gets a weapon in the <see cref="WeaponDescriptorCollection"/> by the specified weapon hash.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
+        /// <param name="hash">The hash.</param>
+        /// <returns>A <see cref="WeaponDescriptor"/> with the specified hash.</returns>
         public static WeaponDescriptor GetWeaponFromHash(this WeaponDescriptorCollection collection, WeaponHash hash)
         {
             WeaponDescriptor[] wds;

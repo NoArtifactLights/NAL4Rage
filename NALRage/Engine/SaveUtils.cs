@@ -1,4 +1,4 @@
-﻿using NALRage.Entities.Serialization;
+using NALRage.Entities.Serialization;
 using Newtonsoft.Json;
 using Rage;
 using Rage.Native;
@@ -8,6 +8,9 @@ using System.IO;
 
 namespace NALRage.Engine
 {
+    /// <summary>
+    /// Provides methods to save and load the status of the game.
+    /// </summary>
     public static class SaveUtils
     {
         internal static class SaveManager

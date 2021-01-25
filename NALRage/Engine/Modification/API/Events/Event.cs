@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Rage;
 
@@ -25,15 +25,15 @@ namespace NALRage.Engine.Modification.API.Events
             Ped = ped;
         }
 
+        /// <inheritdoc />
         public abstract void Process();
 
         /// <summary>
         /// Called when the event is started.
         /// </summary>
         /// <remarks>
-        /// <note type="warning">
-        /// Do <b>not</b> use any other <see cref="Ped" /> other than the specified one in the <see cref="Ped"/> property.
-        /// </note>
+        /// > [!WARNING]
+        /// > Do <b>not</b> use any other <see cref="Ped" /> other than the specified one in the <see cref="Ped"/> property.
         /// </remarks>
         public abstract void OnStart();
 
@@ -45,11 +45,10 @@ namespace NALRage.Engine.Modification.API.Events
         /// dismissed. To free other <see cref="Entity"/>-es, you <b>must</b> override this method and then dismisses them. 
         /// You can call this to end this <see cref="Event"/>.
         /// <para>
-        /// <note type="implement">
-        /// Do <b>not</b> put long blocking calls and infinite loops here; However, the action of freeing a lot of <see cref="Entity"/>-es
-        /// in a collection like <see cref="List{T}"/>, or <see cref="Array"/> is allowed. <br />
-        /// Also, make sure you don't cause or <see langword="throw"/> <see cref="Exception"/>s here, as it will crash the plugin.
-        /// </note>
+        /// [!WARNING]
+        /// > Do <b>not</b> put long blocking calls and infinite loops here; However, the action of freeing a lot of <see cref="Entity"/>-es
+        /// > in a collection like <see cref="List{T}"/>, or <see cref="Array"/> is allowed. <br />
+        /// > Also, make sure you don't cause or <see langword="throw"/> <see cref="Exception"/>s here, as it will crash the plugin.
         /// </para>
         /// </remarks>
         public virtual void Finally()
@@ -61,7 +60,11 @@ namespace NALRage.Engine.Modification.API.Events
             }
         }
 
-        public virtual bool IsEnded { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the process of this <see cref="Event" /> is over.
+        /// Ended events no longer gets processed.
+        /// </summary>
+        public virtual bool IsEnded { get; protected set; }
 
         // internal void FiberThread()
         // {

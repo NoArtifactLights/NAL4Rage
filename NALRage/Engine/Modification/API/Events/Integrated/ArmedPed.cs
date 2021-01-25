@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using Rage;
 
 namespace NALRage.Engine.Modification.API.Events.Integrated
@@ -10,6 +10,7 @@ namespace NALRage.Engine.Modification.API.Events.Integrated
     {
         private Blip blip;
 
+        /// <inheritdoc />
         public override void OnStart()
         {
             if (!Entry.ArmedIds.Contains(Ped.Handle))
@@ -24,6 +25,7 @@ namespace NALRage.Engine.Modification.API.Events.Integrated
             }
         }
 
+        /// <inheritdoc />
         public override void Process()
         {
             if (!Ped.Exists() || Ped.IsDead)
@@ -32,6 +34,7 @@ namespace NALRage.Engine.Modification.API.Events.Integrated
             }
         }
 
+        /// <inheritdoc />
         public override void Finally()
         {
             if (blip)

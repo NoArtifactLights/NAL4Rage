@@ -1,15 +1,22 @@
-﻿using NALRage.Entities;
+using NALRage.Entities;
 using Rage;
 using System;
 using System.Drawing;
 
 namespace NALRage.Engine
 {
+    /// <summary>
+    /// Provides methods to handle game contents.
+    /// </summary>
     public static class GameContentUtils
     {
         private static readonly RelationshipGroup CivilianMale = new RelationshipGroup("CIVMALE");
         private static readonly RelationshipGroup CivilianFemale = new RelationshipGroup("CIVFEMALE");
 
+        /// <summary>
+        /// Updates the relationship status according to the specified difficulty.
+        /// </summary>
+        /// <param name="difficulty">The difficulty.</param>
         public static void SetRelationship(Difficulty difficulty)
         {
             Game.SetRelationshipBetweenRelationshipGroups(CivilianMale, CivilianFemale, Relationship.Hate);
@@ -44,7 +51,7 @@ namespace NALRage.Engine
                     Game.SetRelationshipBetweenRelationshipGroups(RelationshipGroup.AmbientGangFamily, CivilianMale, Relationship.Hate);
                     break;
 
-                case Difficulty.Nether:
+                case Difficulty.Extreme:
                     Game.SetRelationshipBetweenRelationshipGroups(RelationshipGroup.AmbientGangFamily, RelationshipGroup.AmbientGangBallas, Relationship.Hate);
                     Game.SetRelationshipBetweenRelationshipGroups(RelationshipGroup.AmbientGangBallas, RelationshipGroup.AmbientGangFamily, Relationship.Hate);
                     Game.SetRelationshipBetweenRelationshipGroups(CivilianMale, RelationshipGroup.Player, Relationship.Hate);
@@ -84,7 +91,7 @@ namespace NALRage.Engine
                     wp = WeaponHash.CarbineRifle;
                     break;
 
-                case Difficulty.Nether:
+                case Difficulty.Extreme:
                     wp = WeaponHash.RPG;
                     break;
             }

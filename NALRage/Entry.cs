@@ -1,4 +1,4 @@
-﻿// Copyright (C) Hot Workshop & contributors 2020.
+// Copyright (C) Hot Workshop & contributors 2020.
 // Licensed under GNU General Public License version 3.
 
 using NALRage.Engine;
@@ -24,6 +24,10 @@ using System.Threading;
 
 namespace NALRage
 {
+    /// <summary>
+    /// The entry point of the mod.
+    /// Avoid calls to this class from external plug-in.
+    /// </summary>
     public static class Entry
     {
         // TODO make this for game manager to use
@@ -32,7 +36,6 @@ namespace NALRage
         
         internal static Configuration Config;
         private static GameFiber process;
-        //internal static bool debugScreen;
 
         [ConsoleCommand(Name = "ReloadConfigs", Description = "Reloads configuration of NAL.")]
         private static void GetConfig()
@@ -41,7 +44,10 @@ namespace NALRage
             Config = ConfigurationHandler.Config;
         }
 
-        // Initializer Method
+        /// <summary>
+        /// The initializer method of the NAL.
+        /// <b>Do not</b> call directly. This will break the whole game.
+        /// </summary>
         public static void Main()
         {
             try
@@ -102,9 +108,13 @@ namespace NALRage
             }
         }
 
-        public static void OnUnload(bool unk)
+        /// <summary>
+        /// The unloading method of the mod.
+        /// Do <b>not</b> call directly.
+        /// </summary>
+        /// <param name="crashed"></param>
+        public static void OnUnload(bool crashed)
         {
-            Game.DisplayNotification(unk.ToString());
             foreach (var blip in Blips)
             {
                 if (blip)
