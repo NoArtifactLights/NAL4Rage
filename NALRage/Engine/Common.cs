@@ -25,6 +25,11 @@ namespace NALRage.Engine
         public static bool Blackout { get; internal set; }
 
         /// <summary>
+        /// Gets whether the mod should be ticking. For example, if your plugin have a loop, please make sure you use a <see langword="while"/> loop and use this property as value.
+        /// </summary>
+        public static bool InstanceRunning { get; internal set; } = true;
+        
+        /// <summary>
         /// Gets a big message thread that can be used to display big message.
         /// </summary>
         public static BigMessageThread BigMessage { get; internal set; } = new BigMessageThread();
@@ -38,6 +43,6 @@ namespace NALRage.Engine
         /// Gets the bonus of having a ped with bounty killed.
         /// You may use <see cref="Modification.API.Functions.AddBountyToPed(Rage.Ped)"/> to add bounty to a ped.
         /// </summary>
-        public const int ArmedBonus = 30;
+        public const int BountyBonus = 30;
     }
 }

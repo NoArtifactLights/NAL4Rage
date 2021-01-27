@@ -6,48 +6,47 @@ namespace NALRage.Engine.Modification
 {
     internal static class ConfigurationHandler
     {
-        private static InitializationFile initializationFile = new InitializationFile("NALRage.ini");
+        private static readonly InitializationFile InitializationFile = new InitializationFile("NALRage.ini");
         private static Configuration configuration;
 
         internal static Configuration Config => configuration;
 
-        internal static void GenerateConfig()
+        private static void GenerateConfig()
         {
             configuration = new Configuration(2);
-            initializationFile.Create();
-            initializationFile.Write("Main", "Version", configuration.Version);
-            initializationFile.Write("Main", "DefaultDifficulty", configuration.DefaultDifficulty);
-            initializationFile.Write("Main", "LoopInterval", configuration.ProcessInterval);
-            initializationFile.Write("Event", "RequirementChance", configuration.EventRequirement);
-            initializationFile.Write("Event", "MaxValue", configuration.EventMax);
-            initializationFile.Write("Event", "MinimalValue", configuration.EventMinimal);
+            InitializationFile.Create();
+            InitializationFile.Write("Main", "Version", configuration.Version);
+            InitializationFile.Write("Main", "DefaultDifficulty", configuration.DefaultDifficulty);
+            InitializationFile.Write("Main", "LoopInterval", configuration.ProcessInterval);
+            InitializationFile.Write("Event", "RequirementChance", configuration.EventRequirement);
+            InitializationFile.Write("Event", "MaxValue", configuration.EventMax);
+            InitializationFile.Write("Event", "MinimalValue", configuration.EventMinimal);
         }
 
         internal static void Init()
         {
-            if (!initializationFile.Exists()) GenerateConfig();
+            if (!InitializationFile.Exists()) GenerateConfig();
             configuration = new Configuration();
             try
             {
-                configuration.Version = initializationFile.ReadInt32("Main", "Version");
+                configuration.Version = InitializationFile.ReadInt32("Main", "Version");
             }
             catch (Exception e)
             {
-                initializationFile.Delete();
+                InitializationFile.Delete();
                 Game.DisplayNotification("Please try reload this plug-in once!");
                 Game.DisplayNotification("If still can't, grab logs and visit <strong>Service Desk</strong>, URL is in logs!");
                 Game.LogTrivial("URL: https://hotworkshop.atlassian.net/servicedesk/customer/portal/2");
-                CrashReporter cr = new CrashReporter(e);
+                var cr = new CrashReporter(e);
                 cr.ReportAndCrashPlugin();
             }
 
             if (configuration.Version != 2)
             {
-                initializationFile.Delete();
+                InitializationFile.Delete();
                 Game.DisplayHelp("Please reload the plug-in using the console!");
                 Game.DisplayNotification("Please reload the plug-in using the console!");
-                CrashReporter cr = new CrashReporter(new FormatException("Invalid configuration version - please restart!"));
-                cr.ReportAndCrashPlugin();
+                new CrashReporter(new FormatException("Invalid configuration version - please restart!")).ReportAndCrashPlugin();
             }
         }
     }

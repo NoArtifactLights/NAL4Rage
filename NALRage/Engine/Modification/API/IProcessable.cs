@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NALRage.Engine.Modification.API
+﻿namespace NALRage.Engine.Modification.API
 {
     /// <summary>
     /// Represents a processable instance. Similar to a scripting component in LSPD First Response.

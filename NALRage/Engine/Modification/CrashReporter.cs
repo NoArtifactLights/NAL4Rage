@@ -11,6 +11,11 @@ namespace NALRage.Engine.Modification
             Exc = ex;
         }
 
+        internal static void CreateNewReportAndCrash(Exception ex)
+        {
+            new CrashReporter(ex).ReportAndCrashPlugin();
+        }
+        
         internal void ReportAndCrashPlugin()
         {
             Logger.Fatal("CrashReporter", "--------------------------------------------------");

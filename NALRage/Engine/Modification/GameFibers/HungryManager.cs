@@ -10,7 +10,7 @@ namespace NALRage.Engine.Modification.GameFibers
     {
         private static float hungry = 10f;
 
-        private static TimerBarPool pool = new TimerBarPool();
+        private static readonly TimerBarPool Pool = new TimerBarPool();
         private static BarTimerBar hungryBar;
 
         [ConsoleCommand("Refills the hungry value.")]
@@ -20,35 +20,33 @@ namespace NALRage.Engine.Modification.GameFibers
         }
 
         [ConsoleCommand("Prints the raw value of the hungry on the game console.")]
-        public static void HungryRaw() => Game.Console.Print(hungry.ToString());
+        public static void HungryRaw() => Game.Console.Print(hungry.ToString("F"));
 
-        internal static void Init()
+        private static void Init()
         {
             hungryBar = new BarTimerBar("Hungry");
-            pool.Add(hungryBar);
+            Pool.Add(hungryBar);
         }
 
         internal static void DrawingFiber()
         {
-            while (true)
+            while (Common.InstanceRunning)
             {
                 GameFiber.Yield();
-                pool.Draw();
+                Pool.Draw();
             }
         }
 
         internal static void FiberNew()
         {
             Init();
-            while (true)
+            while (Common.InstanceRunning)
             {
                 Fiber();
             }
         }
 
-        internal static float Precentage => hungry * 10;
-
-        internal static void Fiber()
+        private static void Fiber()
         {
             GameFiber.Sleep(1500);
             if (hungry > 10f) hungry = 10f;

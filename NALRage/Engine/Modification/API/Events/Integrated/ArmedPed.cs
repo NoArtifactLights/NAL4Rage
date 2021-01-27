@@ -8,18 +8,18 @@ namespace NALRage.Engine.Modification.API.Events.Integrated
     /// </summary>
     public class ArmedPed : Event
     {
-        private Blip blip;
+        private Blip _blip;
 
         /// <inheritdoc />
         public override void OnStart()
         {
             if (!Entry.ArmedIds.Contains(Ped.Handle))
             {
-                Blip b = Ped.AttachBlip();
-                b.Sprite = BlipSprite.Enemy;
-                b.Color = Color.Red;
-                b.Scale = 0.5f;
-                Functions.MarkBlipDeletion(b);
+                _blip = Ped.AttachBlip();
+                _blip.Sprite = BlipSprite.Enemy;
+                _blip.Color = Color.Red;
+                _blip.Scale = 0.5f;
+                Functions.MarkBlipDeletion(_blip);
                 Functions.EquipPedWeapon(Ped);
                 Functions.AddBountyToPed(Ped);
             }
@@ -37,9 +37,9 @@ namespace NALRage.Engine.Modification.API.Events.Integrated
         /// <inheritdoc />
         public override void Finally()
         {
-            if (blip)
+            if (_blip)
             {
-                blip.Delete();
+                _blip.Delete();
             }
             base.Finally();
         }

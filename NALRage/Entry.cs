@@ -31,17 +31,17 @@ namespace NALRage
     public static class Entry
     {
         // TODO make this for game manager to use
-        internal static List<uint> ArmedIds = new List<uint>();
-        internal static List<Blip> Blips = new List<Blip>();
+        internal static readonly List<uint> ArmedIds = new List<uint>();
+        internal static readonly List<Blip> Blips = new List<Blip>();
         
-        internal static Configuration Config;
+        private static Configuration config;
         private static GameFiber process;
 
         [ConsoleCommand(Name = "ReloadConfigs", Description = "Reloads configuration of NAL.")]
         private static void GetConfig()
         { 
             ConfigurationHandler.Init();
-            Config = ConfigurationHandler.Config;
+            config = ConfigurationHandler.Config;
         }
 
         /// <summary>
@@ -78,10 +78,9 @@ namespace NALRage
 
                 EventManager.RegisterEvent(typeof(ArmedPed));
                 Logger.Info("Main", "GameFiber > MenuManager.FiberInit > Creating & Starting Instance");
-                GameFiber menu;
-                menu = GameFiber.StartNew(MenuManager.FiberInit);
+                GameFiber.StartNew(MenuManager.FiberInit, "MenuManager");
                 Logger.Info("Main", "GameFiber > GameManager.ProcessEach100 > Creating & Starting Instance");
-                process = GameFiber.StartNew(GameManager.ProcessEach100);
+                process = GameFiber.StartNew(GameManager.ProcessEach100, "Process");
                 Logger.Info("Main", "GameFiber > HungryManager.FiberNew > Creating & Start Instance");
                 HungryUtils.StartFiber();
                 GameFiber.Sleep(5000);
@@ -93,18 +92,23 @@ namespace NALRage
                 Logger.Info("Main", "DONE!");
                 Game.DisplayHelp("Welcome to NoArtifactLights!");
                 Game.DisplayNotification("You have currently playing the ~h~RAGE Plug-in Hook~s~ version.");
-                
+
                 Game.RawFrameRender += Game_RawFrameRender;
                 GameFiber.Hibernate();
             }
-            catch(ThreadAbortException)
+            catch (ThreadAbortException)
             {
                 Logger.Info("Main", "Someone is aborting our thread");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 CrashReporter cr = new CrashReporter(ex);
                 cr.ReportAndCrashPlugin();
+            }
+            finally
+            {
+                Common.InstanceRunning = false;
+                PluginManager.Finally();
             }
         }
 

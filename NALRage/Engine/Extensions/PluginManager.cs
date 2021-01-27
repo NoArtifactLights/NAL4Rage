@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using NALRage.Engine.Modification.API;
+using Rage;
 
 namespace NALRage.Engine.Extensions
 {
     internal static class PluginManager
     {
-        private static List<Plugin> plugins = new List<Plugin>();
+        private static readonly List<Plugin> Plugins = new List<Plugin>();
 
+        internal static void Finally()
+        {
+            foreach (var plugin in Plugins)
+            {
+                plugin?.Finally();
+            }
+        }
+        
         internal static void LoadPlugins()
         {
             if (!Directory.Exists("plugins\\NAL"))
@@ -50,19 +57,19 @@ namespace NALRage.Engine.Extensions
                     continue;
                 }
 
-                Plugin plugin = null;
-                Type[] types = assembly.GetTypes();
-                foreach (var type in types)
-                {
-                    if (type.IsAssignableFrom(typeof(Plugin)))
-                    {
-                        plugin = (Plugin)Activator.CreateInstance(type);
-                        break;
-                    }
-                }
+                var types = assembly.GetTypes();
+                Plugin plugin = (from type in types where type.IsAssignableFrom(typeof(Plugin)) select (Plugin) Activator.CreateInstance(type)).FirstOrDefault();
 
-                plugins.Add(plugin);
-                plugin.OnStart();
+                if (plugin != null)
+                {
+                    Plugins.Add(plugin);
+                    plugin.OnStart();
+                }
+                else
+                {
+                    Logger.Warn("PluginManager", "A loaded plugin's instance is null. Will not start it.");
+                    Game.DisplayNotification($"During load, <b>{assembly.GetName()}</b> became null. The plugin is never started. Contact author for more information.");
+                }
             }
         }
     }

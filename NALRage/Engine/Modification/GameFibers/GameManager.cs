@@ -10,21 +10,20 @@ namespace NALRage.Engine.Modification.GameFibers
 {
     internal static class GameManager
     {
-        private static List<PoolHandle> peds = new List<PoolHandle>();
+        private static readonly List<PoolHandle> ProcessedPeds = new List<PoolHandle>();
         // private static List<PoolHandle> armedPeds = new List<PoolHandle>();
-        private static List<PoolHandle> killedPeds = new List<PoolHandle>();
-        internal static bool ForceEvent;
+        private static readonly List<PoolHandle> KilledPeds = new List<PoolHandle>();
+        private static bool forceEvent;
 
         [ConsoleCommand(Description = "Forces a event to be started in next NAL tick.")]
         public static void ForceStartEvent()
         {
-            ForceEvent = true;
+            forceEvent = true;
         }
         
         internal static void ProcessEach100()
         {
-            
-            while (true)
+            while (Common.InstanceRunning)
             {
                 //if (Game.IsKeyDown(System.Windows.Forms.Keys.F5))
                 //{
@@ -37,15 +36,15 @@ namespace NALRage.Engine.Modification.GameFibers
                     GameFiber.Yield();
                     if (!p.Exists()) continue;
                     // Detects whether a ped was killed by the player
-                    if (p.HasBeenDamagedBy(Game.LocalPlayer.Character) && p.IsDead && !killedPeds.Contains(p.Handle))
+                    if (p.HasBeenDamagedBy(Game.LocalPlayer.Character) && p.IsDead && !KilledPeds.Contains(p.Handle))
                     {
-                        killedPeds.Add(p.Handle);
+                        KilledPeds.Add(p.Handle);
                         Common.Kills++;
                         Common.Cash += new Random().Next(5, 15);
                         if (Entry.ArmedIds.Contains(p.Handle))
                         {
-                            Common.Cash += Common.ArmedBonus;
-                            Game.DisplayHelp("Kill armed ped bonus +$" + Common.ArmedBonus);
+                            Common.Cash += Common.BountyBonus;
+                            Game.DisplayHelp("Bounty bonus +$" + Common.BountyBonus);
                         }
 
                         // Checks and removes it's blip as this ped is currently dead.
@@ -53,6 +52,7 @@ namespace NALRage.Engine.Modification.GameFibers
                         {
                             p.GetAttachedBlip().Delete();
                         }
+
                         DetermineDiff();
                     }
                 }
@@ -63,31 +63,36 @@ namespace NALRage.Engine.Modification.GameFibers
                     // Avoid animals to be flagged
                     if (!p2.IsHuman) continue;
 
-                    int var = new Random().Next(9, 109);
-                    if ((var == 89 || ForceEvent) && !Entry.ArmedIds.Contains(p2.Handle) && !(p2.Model.Name == "s_m_y_cop_01" || p2.Model.Name == "s_f_y_cop_01") && !p2.IsPlayer)
+                    var random = new Random().Next(9, 109);
+                    if ((random == 89 || forceEvent) && !ProcessedPeds.Contains(p2.Handle) &&
+                        !Entry.ArmedIds.Contains(p2.Handle) &&
+                        !(p2.Model.Name == "s_m_y_cop_01" || p2.Model.Name == "s_f_y_cop_01") && !p2.IsPlayer)
                     {
-                        ForceEvent = false;
+                        ProcessedPeds.Add(p2.Handle);
                         EventManager.StartRandomEvent(p2);
                     }
 
+                    forceEvent = false;
                 }
+
                 EventManager.Process();
-                if (GameManager.peds.Count == 10000)
+                if (ProcessedPeds.Count == 10000)
                 {
                     Logger.Trace("Game", "Cleaning IDs");
-                    GameManager.peds.Clear();
+                    ProcessedPeds.Clear();
                 }
+
                 if (Entry.ArmedIds.Count == 1000)
                 {
                     Logger.Trace("Game", "Cleaning armed ids");
                     Entry.ArmedIds.Clear();
                 }
-                if (killedPeds.Count == 100)
+
+                if (KilledPeds.Count == 100)
                 {
                     Logger.Trace("Game", "Cleaning killed ids");
-                    killedPeds.Clear();
+                    KilledPeds.Clear();
                 }
-                
             }
         }
 
@@ -122,9 +127,9 @@ namespace NALRage.Engine.Modification.GameFibers
                     break;
 
                 case 1500:
-                    Logger.Info("Game", "Difficulty has been altered to Nether");
+                    Logger.Info("Game", "Difficulty has been altered to Extreme");
                     Common.Difficulty = Difficulty.Extreme;
-                    Common.BigMessage.MessageInstance.ShowSimpleShard("Difficulty Changed", "Difficulty is changed to Nether.");
+                    Common.BigMessage.MessageInstance.ShowSimpleShard("Difficulty Changed", "Difficulty is changed to Extreme.");
                     GameContentUtils.SetRelationship(Difficulty.Extreme);
                     break;
             }

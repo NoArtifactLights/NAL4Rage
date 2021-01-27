@@ -69,6 +69,9 @@
     <Compile Include="Engine\WeaponShopUtils.cs" />
     <Compile Include="Entities\Difficulty.cs" />
     <Compile Include="Entities\Serialization\Configuration.cs" />
+    <Compile Include="Entities\Serialization\Customization\FoodItem.cs" />
+    <Compile Include="Entities\Serialization\Customization\FoodShop.cs" />
+    <Compile Include="Entities\Serialization\SerializablePosition.cs" />
     <Compile Include="Entities\Serialization\SaveFile.cs" />
     <Compile Include="Entities\Serialization\SaveWeaponDescriptor.cs" />
     <Compile Include="Entities\Serialization\WorldStatus.cs" />

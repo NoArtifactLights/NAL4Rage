@@ -7,7 +7,7 @@ namespace NALRage.Engine.Modification.API.Events
     internal static class EventManager
     {
         private static readonly List<Type> Events = new List<Type>();
-        private static readonly List<Event> processingEvents = new List<Event>();
+        private static readonly List<Event> ProcessingEvents = new List<Event>();
 
         internal static void RegisterEvent(Type @event)
         {
@@ -21,12 +21,12 @@ namespace NALRage.Engine.Modification.API.Events
 
         internal static void Process()
         {
-            for (int i = 0; i < processingEvents.Count; i++)
+            for (int i = 0; i < ProcessingEvents.Count; i++)
             {
-                Event ev = processingEvents[i];
+                Event ev = ProcessingEvents[i];
                 if (ev.IsEnded)
                 {
-                    processingEvents.Remove(ev);
+                    ProcessingEvents.Remove(ev);
                     continue;
                 }
                 
@@ -50,7 +50,7 @@ namespace NALRage.Engine.Modification.API.Events
             {
                 instance.SetPed(p);
                 instance.OnStart();
-                processingEvents.Add(instance);
+                ProcessingEvents.Add(instance);
             }
             catch (Exception ex)
             {

@@ -3,10 +3,15 @@
   <component name="ContentModelStore">
     <e p="C:\Programs\DevProjs\NALRage" t="IncludeFlat">
       <e p="NALRage" t="IncludeRecursive">
+        <e p=".editorconfig" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Engine" t="Include">
           <e p="Common.cs" t="Include" />
+          <e p="Extensions" t="Include">
+            <e p="PluginManager.cs" t="Include" />
+          </e>
           <e p="GameContentUtils.cs" t="Include" />
+          <e p="HungryUtils.cs" t="Include" />
           <e p="Interfaces" t="Include" />
           <e p="Menus" t="Include">
             <e p="MenuManager.cs" t="Include" />
@@ -21,7 +26,9 @@
                 </e>
               </e>
               <e p="Functions.cs" t="Include" />
+              <e p="IProcessable.cs" t="Include" />
               <e p="Logger.cs" t="Include" />
+              <e p="Plugin.cs" t="Include" />
             </e>
             <e p="ConfigurationHandler.cs" t="Include" />
             <e p="CrashReporter.cs" t="Include" />
@@ -37,8 +44,13 @@
           <e p="Difficulty.cs" t="Include" />
           <e p="Serialization" t="Include">
             <e p="Configuration.cs" t="Include" />
+            <e p="Customization" t="Include">
+              <e p="FoodItem.cs" t="Include" />
+              <e p="FoodShop.cs" t="Include" />
+            </e>
             <e p="SaveFile.cs" t="Include" />
             <e p="SaveWeaponDescriptor.cs" t="Include" />
+            <e p="SerializablePosition.cs" t="Include" />
             <e p="WorldStatus.cs" t="Include" />
           </e>
         </e>
@@ -52,7 +64,7 @@
       <e p="NALRage.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
     </e>
-    <e p="C:\Users\Ender\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Ender\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_NALRage.2025680151.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Ender\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Ender\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_NALRage.2025680151.00" t="ExcludeRecursive" />
   </component>
 </project>

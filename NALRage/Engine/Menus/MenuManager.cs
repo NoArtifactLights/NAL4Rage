@@ -3,6 +3,7 @@ using Rage.Native;
 using RAGENativeUI;
 using RAGENativeUI.Elements;
 using System.Windows.Forms;
+using NALRage.Engine.Modification.API;
 
 namespace NALRage.Engine.Menus
 {
@@ -60,7 +61,7 @@ namespace NALRage.Engine.Menus
             itemCallCops.Activated += ItemCallCops_Activated;
 
             modelsMenu = new UIMenu("NAL", "Appearance Menu");
-            itemCop = new UIMenuItem("Male Cop", "The male LSPD officer.");
+            itemCop = new UIMenuItem("Male Cop", "The male police officer.");
             itemClassic = new UIMenuItem("Classic", "The classic NAL load model.");
             itemCop.Activated += ItemCop_Activated;
             itemClassic.Activated += ItemClassic_Activated;
@@ -71,7 +72,7 @@ namespace NALRage.Engine.Menus
             mainMenu.RefreshIndex();
             Pool.Add(mainMenu);
             Pool.Add(modelsMenu);
-            buyMenu = new UIMenu("Ammu-Nation", "Weapon Shop");
+            buyMenu = new UIMenu("Guns", "Weapon Shop");
             itemPistol = WeaponShopUtils.GenerateWeaponSellerItem("Pistol Ammo x100", "A personal defense weapon that is easy to carry, but has limited clip.", 1000);
             itemPumpShotgun = WeaponShopUtils.GenerateWeaponSellerItem("Pump Shotgun Ammo x50", "A weapon has short range but has strong power when enemy comes close.", 2000);
             itemBodyArmor = WeaponShopUtils.GenerateWeaponSellerItem("Standard Body Armor", "This armor can defend one shotgun round in min-range and can defend several pistol rounds.", 3500);
@@ -103,7 +104,7 @@ namespace NALRage.Engine.Menus
                     if (Game.IsKeyDown(Keys.N))
                     {
                         Game.LogTrivial("Key is N. hit!");
-                        itemCash.SetRightLabel(Common.Cash + "$");
+                        itemCash.SetRightLabel(Common.Cash.ToString("N") + "$");
                         itemKills.SetRightLabel(Common.Kills.ToString());
                         itemDifficulty.SetRightLabel(Common.Difficulty.ToString());
                         mainMenu.Visible = !mainMenu.Visible;
@@ -165,8 +166,7 @@ namespace NALRage.Engine.Menus
 
         private static void ItemLights_CheckboxEvent(UIMenuCheckboxItem sender, bool @checked)
         {
-            Common.Blackout = @checked;
-            NativeFunction.Natives.x1268615ACE24D504(@checked);
+            Functions.BlackoutStatus = @checked;
         }
     }
 }
