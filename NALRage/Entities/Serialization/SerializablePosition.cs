@@ -8,10 +8,18 @@ namespace NALRage.Entities.Serialization
     /// Represents a <see cref="Rage.Vector3"/> that can be serialized.
     /// </summary>
     [Serializable]
-    public struct SerializablePosition
+    public class SerializablePosition
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SerializablePosition"/> structure.
+        /// Initializes a new instance of the <see cref="SerializablePosition"/> class.
+        /// Only for serializers.
+        /// </summary>
+        public SerializablePosition()
+        {
+        }
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SerializablePosition"/> class.
         /// </summary>
         /// <param name="position">The position.</param>
         public SerializablePosition(Vector3 position)
@@ -25,20 +33,27 @@ namespace NALRage.Entities.Serialization
         /// Gets the X component of this <see cref="SerializablePosition"/>
         /// </summary>
         [XmlAttribute]
-        public readonly float X;
+        public float X;
 
         /// <summary>
         /// Gets the Y component of this <see cref="SerializablePosition"/>
         /// </summary>
         [XmlAttribute]
-        public readonly float Y;
+        public float Y;
 
         /// <summary>
         /// Gets the Z component of this <see cref="SerializablePosition"/>
         /// </summary>
         [XmlAttribute]
-        public readonly float Z;
+        public float Z;
 
+        [NonSerialized] internal Vector3 GeneratedVector3;
+
+        internal void GenerateVector3()
+        {
+            GeneratedVector3 = this;
+        }
+        
         /// <inheritdoc />
         public override bool Equals(object obj)
         {
@@ -90,6 +105,7 @@ namespace NALRage.Entities.Serialization
         /// <returns>A Vector3 for method calls.</returns>
         public static implicit operator Vector3(SerializablePosition pos)
         {
+            Game.LogTrivial($"{pos.X}, {pos.Y}, {pos.Z}");
             return new Vector3(pos.X, pos.Y, pos.Z);
         }
     }

@@ -68,7 +68,9 @@ namespace NALRage.Engine.Modification.GameFibers
                     var random = new Random().Next(9, 109);
                     if ((random == 89 || forceEvent) && !ProcessedPeds.Contains(p2.Handle) &&
                         !Entry.ArmedIds.Contains(p2.Handle) &&
-                        !(p2.Model.Name == "s_m_y_cop_01" || p2.Model.Name == "s_f_y_cop_01") && !p2.IsPlayer)
+                        p2.Model.Name != "s_m_y_cop_01" && p2.Model.Name != "s_f_y_cop_01" &&
+                        p2.RelationshipGroup != RelationshipGroup.Cop && !p2.IsPlayer)
+                        // TODO enforce no cop in selection policy
                     {
                         ProcessedPeds.Add(p2.Handle);
                         EventManager.StartRandomEvent(p2);

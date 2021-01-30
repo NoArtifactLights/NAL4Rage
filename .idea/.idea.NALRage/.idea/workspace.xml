@@ -20,17 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2f606328-a148-4e10-b5f5-7feedbeb719a" name="默认的" comment=":art: Updates the code style in all files">
-      <change afterPath="$PROJECT_DIR$/NALRage/Engine/Modification/Custom/ShopManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NALRage/Entities/Serialization/Customization/ShopsFile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NALRage/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NALRage/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NALRage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NALRage/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NALRage/Engine/Menus/MenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/Engine/Menus/MenuManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NALRage/Engine/Modification/API/Functions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/Engine/Modification/API/Functions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NALRage/Engine/Modification/Custom/ShopManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/Engine/Modification/Custom/ShopManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NALRage/Engine/Modification/GameFibers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/Engine/Modification/GameFibers/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NALRage/Engine/Modification/GameFibers/HungryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/Engine/Modification/GameFibers/HungryManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NALRage/Entities/Serialization/SerializablePosition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/Entities/Serialization/SerializablePosition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NALRage/Entry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/Entry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NALRage/NALRage.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/NALRage.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +32,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/62FFEEB7-EC02-4BEA-B61E-5FBF8D44AC5B/80/c44f5bde/WaitHandle.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -56,13 +52,15 @@
       <option value="$PROJECT_DIR$/NALRage/Entities/Serialization/SaveWeaponDescriptor.cs" />
       <option value="$PROJECT_DIR$/NALRage/Entities/Serialization/WorldStatus.cs" />
       <option value="$PROJECT_DIR$/NALRage/Entities/Serialization/Customization/ShopsFile.cs" />
-      <option value="$PROJECT_DIR$/NALRage/Engine/Modification/GameFibers/GameManager.cs" />
-      <option value="$PROJECT_DIR$/NALRage/Entities/Serialization/SerializablePosition.cs" />
       <option value="$PROJECT_DIR$/NALRage/Engine/Menus/MenuManager.cs" />
-      <option value="$PROJECT_DIR$/NALRage/Engine/Modification/GameFibers/HungryManager.cs" />
       <option value="$PROJECT_DIR$/NALRage/Engine/Modification/API/Functions.cs" />
-      <option value="$PROJECT_DIR$/NALRage/Engine/Modification/Custom/ShopManager.cs" />
       <option value="$PROJECT_DIR$/NALRage/Entry.cs" />
+      <option value="$PROJECT_DIR$/NALRage/Engine/Modification/GameFibers/HungryManager.cs" />
+      <option value="$PROJECT_DIR$/../../../Program Files/Epic Games/GTAVF/GTAV/NAL/Shops.xml" />
+      <option value="$PROJECT_DIR$/NALRage/Dependencies.resx" />
+      <option value="$PROJECT_DIR$/NALRage/Entities/Serialization/SerializablePosition.cs" />
+      <option value="$PROJECT_DIR$/NALRage/Engine/Modification/Custom/ShopManager.cs" />
+      <option value="$PROJECT_DIR$/NALRage/Engine/Modification/GameFibers/GameManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1jDdVooRo6slYobmSMedFr9sflT" />
@@ -75,6 +73,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.3504" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="FileHeaderTextPageId" />
@@ -96,7 +96,8 @@
       <workItem from="1603607200702" duration="180000" />
       <workItem from="1611725011651" duration="4022000" />
       <workItem from="1611816447219" duration="1329000" />
-      <workItem from="1611970523441" duration="2573000" />
+      <workItem from="1611970523441" duration="6175000" />
+      <workItem from="1611978321949" duration="2494000" />
     </task>
     <task id="LOCAL-00001" summary=":bulb: Make configuration load from INI file by RAGE">
       <created>1603417343701</created>
@@ -145,24 +146,5 @@
     <MESSAGE value=":construction: Make armed ped event work" />
     <MESSAGE value=":art: Updates the code style in all files" />
     <option name="LAST_COMMIT_MESSAGE" value=":art: Updates the code style in all files" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/NALRage/Engine/WeaponShopUtils.cs</url>
-          <line>29</line>
-          <properties documentPath="C:\Programs\DevProjs\NALRage\NALRage\Engine\WeaponShopUtils.cs" initialLine="28">
-            <startOffsets>
-              <option value="1402" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1403" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

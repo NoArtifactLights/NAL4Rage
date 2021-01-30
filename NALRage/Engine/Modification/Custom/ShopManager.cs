@@ -41,6 +41,7 @@ namespace NALRage.Engine.Modification.Custom
                     Sprite = (BlipSprite)605,
                     Name = "Store"
                 };
+                shop.Position.GenerateVector3();
                 Functions.MarkBlipDeletion(blip);
             }
         }
@@ -57,7 +58,7 @@ namespace NALRage.Engine.Modification.Custom
                 GameFiber.Yield();
                 foreach (var shop in shops)
                 {
-                    if (Game.LocalPlayer.Character.DistanceTo(shop.Position) < 3.5f)
+                    if (Game.LocalPlayer.Character.DistanceTo(shop.Position.GeneratedVector3) < 3.5f)
                     {
                         if (!alreadySetCurrentItems)
                         {
@@ -78,6 +79,11 @@ namespace NALRage.Engine.Modification.Custom
                             alreadySetCurrentItems = true;
                         }
                         
+                        Game.DisplayHelp("Press ~INPUT_CONTEXT~ to open the shop menu.");
+                        if (Game.IsControlPressed(0, GameControl.Context))
+                        {
+                            shopMenu.Visible = !shopMenu.Visible;
+                        }
                         break;
                     }
                     else
@@ -85,10 +91,7 @@ namespace NALRage.Engine.Modification.Custom
                         alreadySetCurrentItems = false;
                     }
 
-                    if (Game.IsControlPressed(0, GameControl.Context))
-                    {
-                        shopMenu.Visible = !shopMenu.Visible;
-                    }
+                    
                 }
             }
         }
