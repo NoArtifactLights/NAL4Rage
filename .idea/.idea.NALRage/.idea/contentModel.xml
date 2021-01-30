@@ -32,6 +32,9 @@
             </e>
             <e p="ConfigurationHandler.cs" t="Include" />
             <e p="CrashReporter.cs" t="Include" />
+            <e p="Custom" t="Include">
+              <e p="ShopManager.cs" t="Include" />
+            </e>
             <e p="GameFibers" t="Include">
               <e p="GameManager.cs" t="Include" />
               <e p="HungryManager.cs" t="Include" />
@@ -47,6 +50,7 @@
             <e p="Customization" t="Include">
               <e p="FoodItem.cs" t="Include" />
               <e p="FoodShop.cs" t="Include" />
+              <e p="ShopsFile.cs" t="Include" />
             </e>
             <e p="SaveFile.cs" t="Include" />
             <e p="SaveWeaponDescriptor.cs" t="Include" />

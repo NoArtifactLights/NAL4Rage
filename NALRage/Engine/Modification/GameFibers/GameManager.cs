@@ -14,6 +14,8 @@ namespace NALRage.Engine.Modification.GameFibers
         // private static List<PoolHandle> armedPeds = new List<PoolHandle>();
         private static readonly List<PoolHandle> KilledPeds = new List<PoolHandle>();
         private static bool forceEvent;
+        
+        internal static readonly List<Vector3> Garages = new List<Vector3>();
 
         [ConsoleCommand(Description = "Forces a event to be started in next NAL tick.")]
         public static void ForceStartEvent()

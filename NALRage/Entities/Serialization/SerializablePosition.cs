@@ -82,5 +82,15 @@ namespace NALRage.Entities.Serialization
         {
             return !(left == right);
         }
+
+        /// <summary>
+        /// Converts this instance into <see cref="Vector3"/> used in natives.
+        /// </summary>
+        /// <param name="pos">The instance.</param>
+        /// <returns>A Vector3 for method calls.</returns>
+        public static implicit operator Vector3(SerializablePosition pos)
+        {
+            return new Vector3(pos.X, pos.Y, pos.Z);
+        }
     }
 }

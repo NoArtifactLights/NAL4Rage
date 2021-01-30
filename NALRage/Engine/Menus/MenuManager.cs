@@ -12,7 +12,7 @@ namespace NALRage.Engine.Menus
     /// </summary>
     public static class MenuManager
     {
-        private static MenuPool Pool { get; set; } = new MenuPool();
+        internal static MenuPool Pool { get; set; } = new MenuPool();
         private static UIMenu mainMenu;
         private static UIMenuItem itemSave;
         private static UIMenuItem itemLoad;

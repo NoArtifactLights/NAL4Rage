@@ -4,6 +4,8 @@ using Rage;
 using Rage.Exceptions;
 using Rage.Native;
 using System;
+using System.Windows.Forms;
+using NALRage.Engine.Modification.GameFibers;
 
 namespace NALRage.Engine.Modification.API
 {
@@ -67,6 +69,71 @@ namespace NALRage.Engine.Modification.API
             if (!blip.IsValid()) throw new InvalidHandleableException(blip);
             if (Entry.Blips.Contains(blip)) return;
             Entry.Blips.Add(blip);
+        }
+
+        /// <summary>
+        /// Increases hungry by specified amount.
+        /// </summary>
+        /// <param name="value">The hungry amount to increase. If more than <c>10.0F</c>, it will be <c>10.0F</c>.</param>
+        public static void IncreaseHungry(float value)
+        {
+            var clamped = value.LimitRange(0f, 10.0f);
+            var tempHungry = HungryManager.Hungry += value;
+            tempHungry = tempHungry.LimitRange(0f, 10.0f);
+        }
+
+        /// <summary>
+        /// Clamps the value to the limited range, if the value is not in range.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="min">The minimum value.</param>
+        /// <param name="max">The maximum value.</param>
+        /// <returns>The clamped value.</returns>
+        public static float LimitRange(this float value, float min, float max)
+        {
+            if (value > max) value = max;
+            if (value < min) value = min;
+            return value;
+        }
+
+        /// <summary>
+        /// Costs the specified amount of money and returns whether the transaction is successful.
+        /// </summary>
+        /// <param name="amount">The amount of money to cost.</param>
+        /// <returns><c>true</c> if the amount of money is successfully decreased; otherwise, <c>false</c>.</returns>
+        public static bool CostMoney(int amount)
+        {
+            if (Common.Cash < amount)
+            {
+                Game.DisplaySubtitle("You don't have money to do that.");
+                return false;
+            }
+
+            Common.Cash -= amount;
+            return true;
+        }
+        
+        /// <summary>
+        /// Registers a new garage to the specified position, for repairing player's vehicle.
+        /// </summary>
+        /// <param name="position">The position of the blip.</param>
+        /// <param name="addBlip">If <c>true</c>, a blip will be added to the garage.</param>
+        /// <exception cref="ArgumentException">The position is <see cref="Vector3.Zero"/>.</exception>
+        public static void RegisterGarage(Vector3 position, bool addBlip = true)
+        {
+            if (position == Vector3.Zero)
+            {
+                throw new ArgumentException("Position cannot be zero.", nameof(position));
+            }
+            GameManager.Garages.Add(position);
+            if (addBlip)
+            {
+                var blip = new Blip(position)
+                {
+                    Sprite = BlipSprite.Garage,
+                    Name = "Repair Vehicle"
+                };
+            }
         }
 
         /// <summary>

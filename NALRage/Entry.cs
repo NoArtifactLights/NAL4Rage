@@ -16,9 +16,9 @@ using Rage.Attributes;
 using Rage.Native;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Runtime.CompilerServices;
 using System.Threading;
+using NALRage.Engine.Modification.Custom;
+
 // Experimental, May Fail!
 [assembly: Plugin("NoArtifactLights", Author = "RelaperCrystal", Description = "The NoArtifactLights Project for RAGE Plug-in Hook", EntryPoint = "NALRage.Entry.Main", PrefersSingleInstance = true)]
 
@@ -36,6 +36,7 @@ namespace NALRage
         
         private static Configuration config;
         private static GameFiber process;
+        private static GameFiber shops;
 
         [ConsoleCommand(Name = "ReloadConfigs", Description = "Reloads configuration of NAL.")]
         private static void GetConfig()
@@ -83,6 +84,8 @@ namespace NALRage
                 process = GameFiber.StartNew(GameManager.ProcessEach100, "Process");
                 Logger.Info("Main", "GameFiber > HungryManager.FiberNew > Creating & Start Instance");
                 HungryUtils.StartFiber();
+                Logger.Info("Main", "GameFiber > ShopManager.Fiber > Creating & Starting  Instance");
+                shops = GameFiber.StartNew(ShopManager.Loop, "ShopManager");
                 GameFiber.Sleep(5000);
                 Game.FadeScreenIn(1000);
 #if DEBUG
@@ -119,6 +122,11 @@ namespace NALRage
         /// <param name="crashed"></param>
         public static void OnUnload(bool crashed)
         {
+            if (crashed)
+            {
+                Logger.Fatal("Main", "RAGE Plugin Hook is shutting down the mod because an unhandled exception.");
+                Logger.Fatal("Main", "You are advised to check the log.");
+            }
             foreach (var blip in Blips)
             {
                 if (blip)
