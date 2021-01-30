@@ -8,10 +8,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 * :sparkles: means a nearly-done feature and is tested
 * :construction: means a new feature just been implemented and is not tested
-* :bug: means a bug fix
 * :newspaper: means a change in the docs included
 
-## [Unreleased]
+## 0.4.1
 
 * :sparkles: Adds the Hungry System
 * :construction: Adds a Customizable Hungry Shop
+* :sparkles: Respawn Handler implemented
+* :construction: Plugin system
+
+### Bug Fixes
+
+* Fixed a bug causing events to incorrectly select cops which is not intended

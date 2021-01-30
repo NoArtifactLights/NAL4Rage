@@ -38,6 +38,7 @@
             <e p="GameFibers" t="Include">
               <e p="GameManager.cs" t="Include" />
               <e p="HungryManager.cs" t="Include" />
+              <e p="RespawnManager.cs" t="Include" />
             </e>
           </e>
           <e p="SaveUtils.cs" t="Include" />

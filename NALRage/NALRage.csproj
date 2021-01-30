@@ -66,6 +66,7 @@
     <Compile Include="Engine\Modification\Custom\ShopManager.cs" />
     <Compile Include="Engine\Modification\GameFibers\GameManager.cs" />
     <Compile Include="Engine\Modification\GameFibers\HungryManager.cs" />
+    <Compile Include="Engine\Modification\GameFibers\RespawnManager.cs" />
     <Compile Include="Engine\SaveUtils.cs" />
     <Compile Include="Engine\WeaponShopUtils.cs" />
     <Compile Include="Entities\Difficulty.cs" />

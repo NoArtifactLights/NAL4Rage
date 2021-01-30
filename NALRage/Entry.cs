@@ -86,6 +86,8 @@ namespace NALRage
                 HungryUtils.StartFiber();
                 Logger.Info("Main", "GameFiber > ShopManager.Fiber > Creating & Starting  Instance");
                 shops = GameFiber.StartNew(ShopManager.Loop, "ShopManager");
+                Logger.Info("Main", "GameFiber > RespawnManager.Loop() > Starting");
+                GameFiber.StartNew(RespawnManager.Loop);
                 GameFiber.Sleep(5000);
                 Game.FadeScreenIn(1000);
 #if DEBUG
