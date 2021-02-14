@@ -1,4 +1,4 @@
-﻿using Rage;
+using Rage;
 using System;
 
 namespace NALRage.Entities.Serialization

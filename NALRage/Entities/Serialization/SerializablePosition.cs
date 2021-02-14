@@ -12,7 +12,7 @@ namespace NALRage.Entities.Serialization
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SerializablePosition"/> class.
-        /// Only for serializers.
+        /// Only for serialize-rs.
         /// </summary>
         public SerializablePosition()
         {

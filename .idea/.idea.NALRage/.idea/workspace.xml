@@ -19,14 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f606328-a148-4e10-b5f5-7feedbeb719a" name="默认的" comment=":sparkles: Done Shops">
-      <change afterPath="$PROJECT_DIR$/NALRage/Engine/Modification/GameFibers/RespawnManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NALRage/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NALRage/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NALRage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NALRage/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NALRage/Entry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/Entry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NALRage/NALRage.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/NALRage/NALRage.csproj" afterDir="false" />
-    </list>
+    <list default="true" id="2f606328-a148-4e10-b5f5-7feedbeb719a" name="默认的" comment=":bookmark: 0.4.1 Release" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,7 +102,7 @@
       <workItem from="1611725011651" duration="4022000" />
       <workItem from="1611816447219" duration="1329000" />
       <workItem from="1611970523441" duration="6175000" />
-      <workItem from="1611978321949" duration="3855000" />
+      <workItem from="1611978321949" duration="4045000" />
     </task>
     <task id="LOCAL-00001" summary=":bulb: Make configuration load from INI file by RAGE">
       <created>1603417343701</created>
@@ -139,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611980949972</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary=":bookmark: 0.4.1 Release">
+      <created>1611982363663</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1611982363663</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +165,7 @@
     <MESSAGE value=":construction: Make armed ped event work" />
     <MESSAGE value=":art: Updates the code style in all files" />
     <MESSAGE value=":sparkles: Done Shops" />
-    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: Done Shops" />
+    <MESSAGE value=":bookmark: 0.4.1 Release" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bookmark: 0.4.1 Release" />
   </component>
 </project>

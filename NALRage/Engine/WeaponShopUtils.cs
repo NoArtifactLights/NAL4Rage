@@ -1,8 +1,13 @@
+using NALRage.Engine.Modification;
+using NALRage.Entities.Serialization;
+using NALRage.Entities.Serialization.Customization;
 using Rage;
 using RAGENativeUI.Elements;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace NALRage.Engine
 {
@@ -11,6 +16,8 @@ namespace NALRage.Engine
     /// </summary>
     public static class WeaponShopUtils
     {
+        private static Vector3[] ammus = { new Vector3(18.18945f, -1120.384f, 28.91654f), new Vector3(-325.6184f, 6072.246f, 31.21228f) };
+
         /// <summary>
         /// Gets a weapon in the <see cref="WeaponDescriptorCollection"/> by the specified weapon hash.
         /// </summary>
@@ -28,7 +35,7 @@ namespace NALRage.Engine
             return wds[0];
         }
 
-        private static Vector3[] ammus = { new Vector3(18.18945f, -1120.384f, 28.91654f), new Vector3(-325.6184f, 6072.246f, 31.21228f) };
+        
 
         internal static UIMenuItem GenerateWeaponSellerItem(string displayName, string description, int price)
         {
@@ -37,6 +44,26 @@ namespace NALRage.Engine
             result.SetRightLabel("$" + price);
             Game.LogTrivial("Created weapon sell item for: " + displayName);
             return result;
+        }
+
+        internal static void LoadShopsFromFile()
+        {
+            if (!File.Exists("NAL\\WeaponShops.xml"))
+            {
+                new CrashReporter(new FileNotFoundException("Invalid weapon shops - copy config file from install archive")).ReportAndCrashPlugin();
+            }
+
+            var serializer = new XmlSerializer(typeof(PositionsFile));
+            var stream = File.OpenRead("NAL\\Shops.xml");
+            var instance = (PositionsFile)serializer.Deserialize(stream);
+
+            var shopList = new List<Vector3>();
+            foreach (var item in instance.Positions)
+            {
+                shopList.Add(item);
+            }
+
+            ammus = shopList.ToArray();
         }
 
         internal static bool DistanceToAmmu()
