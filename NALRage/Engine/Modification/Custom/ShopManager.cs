@@ -1,11 +1,10 @@
-﻿using System.IO;
+using System.IO;
 using System.Xml.Serialization;
+using LemonUI.Menus;
 using NALRage.Engine.Menus;
 using NALRage.Engine.Modification.API;
 using NALRage.Entities.Serialization.Customization;
 using Rage;
-using RAGENativeUI;
-using RAGENativeUI.Elements;
 
 namespace NALRage.Engine.Modification.Custom
 {
@@ -16,7 +15,7 @@ namespace NALRage.Engine.Modification.Custom
         private static FoodItem[] currentItems;
         private static bool alreadySetCurrentItems;
 
-        private static UIMenu shopMenu;
+        private static NativeMenu shopMenu;
 
         internal static void LoadShopManager()
         {
@@ -50,7 +49,7 @@ namespace NALRage.Engine.Modification.Custom
         {
             LoadShopManager();
             LoadShops();
-            shopMenu = new UIMenu("Food Store", "FOOD STORES");
+            shopMenu = new NativeMenu("Food Store", "FOOD STORES");
             MenuManager.Pool.Add(shopMenu);
             
             while (Common.InstanceRunning)
@@ -63,10 +62,11 @@ namespace NALRage.Engine.Modification.Custom
                         if (!alreadySetCurrentItems)
                         {
                             currentItems = shop.Items;
-                            shopMenu.MenuItems.Clear();
+                            shopMenu.Clear();
+
                             foreach (var item in currentItems)
                             {
-                                var shopItem = new UIMenuItem(item.Name, "Buys the food.");
+                                var shopItem = new NativeItem(item.Name, "Buys the food.");
                                 shopItem.Activated += (sender, selectedItem) =>
                                 {
                                     if (Functions.CostMoney(item.Price))
@@ -74,7 +74,7 @@ namespace NALRage.Engine.Modification.Custom
                                         Functions.IncreaseHungry(item.Amount);
                                     }
                                 };
-                                shopMenu.AddItem(shopItem);
+                                shopMenu.Add(shopItem);
                             }
                             alreadySetCurrentItems = true;
                         }

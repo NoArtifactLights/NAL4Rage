@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RAGENativeUI">
-      <HintPath>..\References\RAGENativeUI.dll</HintPath>
-    </Reference>
     <Reference Include="RagePluginHook, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\References\RagePluginHookSDK.dll</HintPath>
     </Reference>
@@ -53,6 +50,7 @@
     <Compile Include="Engine\Extensions\PluginManager.cs" />
     <Compile Include="Engine\GameContentUtils.cs" />
     <Compile Include="Engine\HungryUtils.cs" />
+    <Compile Include="Engine\Menus\InventoryMenuManager.cs" />
     <Compile Include="Engine\Menus\MenuManager.cs" />
     <Compile Include="Engine\Modification\API\Events\Event.cs" />
     <Compile Include="Engine\Modification\API\Events\EventManager.cs" />
@@ -70,21 +68,32 @@
     <Compile Include="Engine\SaveUtils.cs" />
     <Compile Include="Engine\WeaponShopUtils.cs" />
     <Compile Include="Entities\Difficulty.cs" />
+    <Compile Include="Entities\Item.cs" />
+    <Compile Include="Entities\ItemResult.cs" />
+    <Compile Include="Entities\ItemStack.cs" />
+    <Compile Include="Entities\PlayerInventory.cs" />
     <Compile Include="Entities\Serialization\Configuration.cs" />
     <Compile Include="Entities\Serialization\Customization\FoodItem.cs" />
     <Compile Include="Entities\Serialization\Customization\FoodShop.cs" />
+    <Compile Include="Entities\Serialization\Customization\PositionsFile.cs" />
     <Compile Include="Entities\Serialization\Customization\ShopsFile.cs" />
+    <Compile Include="Entities\Serialization\Customization\ShopWeapon.cs" />
+    <Compile Include="Entities\Serialization\Customization\WeaponShop.cs" />
     <Compile Include="Entities\Serialization\SerializablePosition.cs" />
     <Compile Include="Entities\Serialization\SaveFile.cs" />
     <Compile Include="Entities\Serialization\SaveWeaponDescriptor.cs" />
     <Compile Include="Entities\Serialization\WorldStatus.cs" />
     <Compile Include="Entry.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Engine\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="LUI4Rage">
+      <Version>1.0.0</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>

@@ -1,8 +1,8 @@
+using LemonUI.Menus;
 using NALRage.Engine.Modification;
 using NALRage.Entities.Serialization;
 using NALRage.Entities.Serialization.Customization;
 using Rage;
-using RAGENativeUI.Elements;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -37,11 +37,11 @@ namespace NALRage.Engine
 
         
 
-        internal static UIMenuItem GenerateWeaponSellerItem(string displayName, string description, int price)
+        internal static NativeItem GenerateWeaponSellerItem(string displayName, string description, int price)
         {
             Game.LogTrivial("Creating weapon sell item for: " + displayName + " at price " + price);
-            UIMenuItem result = new UIMenuItem(displayName, description);
-            result.SetRightLabel("$" + price);
+            var result = new NativeItem(displayName, description);
+            result.AltTitle = "$" + price;
             Game.LogTrivial("Created weapon sell item for: " + displayName);
             return result;
         }

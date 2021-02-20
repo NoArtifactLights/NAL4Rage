@@ -1,10 +1,11 @@
-﻿// NALRage
+// NALRage
 // Copyright (C) RelaperCrystal 2020-2021.
 
 using System.Drawing;
+using LemonUI.TimerBars;
+using NALRage.Engine.Menus;
 using Rage;
 using Rage.Attributes;
-using RAGENativeUI.Elements;
 
 namespace NALRage.Engine.Modification.GameFibers
 {
@@ -12,8 +13,7 @@ namespace NALRage.Engine.Modification.GameFibers
     {
         internal static float Hungry = 10f;
 
-        private static readonly TimerBarPool Pool = new TimerBarPool();
-        private static BarTimerBar hungryBar;
+        private static TimerBarProgress hungryBar;
 
         [ConsoleCommand("Refills the hungry value.")]
         public static void RefillHungry()
@@ -26,8 +26,7 @@ namespace NALRage.Engine.Modification.GameFibers
 
         private static void Init()
         {
-            hungryBar = new BarTimerBar("Hungry");
-            Pool.Add(hungryBar);
+            hungryBar = new TimerBarProgress("Hungry");
         }
 
         internal static void DrawingFiber()
@@ -35,7 +34,7 @@ namespace NALRage.Engine.Modification.GameFibers
             while (Common.InstanceRunning)
             {
                 GameFiber.Yield();
-                Pool.Draw();
+                hungryBar.Draw();
             }
         }
 
@@ -73,7 +72,7 @@ namespace NALRage.Engine.Modification.GameFibers
 
             Hungry = Hungry - offset;
 
-            hungryBar.Percentage = Hungry / 10;
+            hungryBar.Progress = Hungry * 10;
             GameFiber.Yield();
         }
     }

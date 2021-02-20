@@ -27,10 +27,6 @@ namespace NALRage.Engine.Modification.GameFibers
         {
             while (Common.InstanceRunning)
             {
-                //if (Game.IsKeyDown(System.Windows.Forms.Keys.F5))
-                //{
-                //    Entry.debugScreen = !Entry.debugScreen;
-                //}
                 GameFiber.Sleep(100);
                 Ped[] peds = World.GetAllPeds();
                 foreach (Ped p in peds)
@@ -59,21 +55,22 @@ namespace NALRage.Engine.Modification.GameFibers
                     }
                 }
 
-                foreach (Ped p2 in peds)
+                // TODO could be merged with the upper one?
+                foreach (var eventPed in peds)
                 {
-                    if (!p2.Exists()) continue;
+                    if (!eventPed.Exists()) continue;
                     // Avoid animals to be flagged
-                    if (!p2.IsHuman) continue;
+                    if (!eventPed.IsHuman) continue;
 
                     var random = new Random().Next(9, 109);
-                    if ((random == 89 || forceEvent) && !ProcessedPeds.Contains(p2.Handle) &&
-                        !Entry.ArmedIds.Contains(p2.Handle) &&
-                        p2.Model.Name != "s_m_y_cop_01" && p2.Model.Name != "s_f_y_cop_01" &&
-                        p2.RelationshipGroup != RelationshipGroup.Cop && !p2.IsPlayer)
+                    if ((random == 89 || forceEvent) && !ProcessedPeds.Contains(eventPed.Handle) &&
+                        !Entry.ArmedIds.Contains(eventPed.Handle) &&
+                        eventPed.Model.Name != "s_m_y_cop_01" && eventPed.Model.Name != "s_f_y_cop_01" &&
+                        eventPed.RelationshipGroup != RelationshipGroup.Cop && !eventPed.IsPlayer)
                         // TODO enforce no cop in selection policy
                     {
-                        ProcessedPeds.Add(p2.Handle);
-                        EventManager.StartRandomEvent(p2);
+                        ProcessedPeds.Add(eventPed.Handle);
+                        EventManager.StartRandomEvent(eventPed);
                     }
 
                     forceEvent = false;
@@ -112,28 +109,29 @@ namespace NALRage.Engine.Modification.GameFibers
                 case 100:
                     Logger.Info("Game", "Difficulty has been altered to Easy");
                     Common.Difficulty = Difficulty.Easy;
-                    Common.BigMessage.MessageInstance.ShowSimpleShard("Difficulty Changed", "Difficulty is changed to Easy.");
+                    Game.DisplayHelp("You are current on Easy.");
                     GameContentUtils.SetRelationship(Difficulty.Easy);
                     break;
+
 
                 case 300:
                     Logger.Info("Game", "Difficulty has been altered to Normal");
                     Common.Difficulty = Difficulty.Normal;
-                    Common.BigMessage.MessageInstance.ShowSimpleShard("Difficulty Changed", "Difficulty is changed to Normal.");
+                    Game.DisplayHelp("You are current on Normal.");
                     GameContentUtils.SetRelationship(Difficulty.Normal);
                     break;
 
                 case 700:
                     Logger.Info("Game", "Difficulty has been altered to Hard");
                     Common.Difficulty = Difficulty.Hard;
-                    Common.BigMessage.MessageInstance.ShowSimpleShard("Difficulty Changed", "Difficulty is changed to Hard.");
+                    Game.DisplayHelp("You are current on Hard.");
                     GameContentUtils.SetRelationship(Difficulty.Hard);
                     break;
 
                 case 1500:
                     Logger.Info("Game", "Difficulty has been altered to Extreme");
                     Common.Difficulty = Difficulty.Extreme;
-                    Common.BigMessage.MessageInstance.ShowSimpleShard("Difficulty Changed", "Difficulty is changed to Extreme.");
+                    Game.DisplayHelp("You are current on Extreme.");
                     GameContentUtils.SetRelationship(Difficulty.Extreme);
                     break;
             }
