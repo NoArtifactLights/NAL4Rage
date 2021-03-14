@@ -10,6 +10,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 * :construction: means a new feature just been implemented and is not tested
 * :newspaper: means a change in the docs included
 
+## Unreleased
+
+* :sparkles: Use in-game native Riot feature to present Riot
+  
+  * People will now fight each other
+  
+  * People will now randomly carry weapons
+
 ## 0.4.1
 
 * :sparkles: Adds the Hungry System
