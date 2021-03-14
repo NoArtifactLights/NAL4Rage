@@ -54,6 +54,7 @@
     <Compile Include="Engine\HungryUtils.cs" />
     <Compile Include="Engine\Identifier.cs" />
     <Compile Include="Engine\Modification\Custom\InventoryManager.cs" />
+    <Compile Include="Engine\Modification\Custom\Inventory\InvalidItem.cs" />
     <Compile Include="Engine\Modification\Custom\Inventory\Item.cs" />
     <Compile Include="Engine\Modification\Custom\Inventory\ItemConverter.cs" />
     <Compile Include="Engine\Modification\Custom\Inventory\PlayerInventory.cs" />

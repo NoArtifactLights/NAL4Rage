@@ -49,7 +49,7 @@ namespace NALRage.Engine.UI.Menus
             itemCallCops = new NativeItem("Call the Cops", "Call for police services.");
             itemDifficulty = new NativeItem("Difficulty", "Views the current difficulty.");
             itemKills = new NativeItem("Kills", "Views the current kill count.");
-            itemAppearance = mainMenu.AddSubMenu(modelsMenu);
+
             itemCash = new NativeItem("Cash", "Views the current cash amount.");
             mainMenu.Add(itemLights);
             mainMenu.Add(itemSave);
@@ -57,7 +57,7 @@ namespace NALRage.Engine.UI.Menus
             mainMenu.Add(itemCallCops);
             mainMenu.Add(itemDifficulty);
             mainMenu.Add(itemKills);
-            mainMenu.Add(itemAppearance);
+
             mainMenu.Add(itemCash);
             itemLights.CheckboxChanged += ItemLights_CheckboxEvent;
             itemSave.Activated += ItemSave_Activated;
@@ -71,6 +71,8 @@ namespace NALRage.Engine.UI.Menus
             itemClassic.Activated += ItemClassic_Activated;
             modelsMenu.Add(itemClassic);
             modelsMenu.Add(itemCop);
+
+            itemAppearance = mainMenu.AddSubMenu(modelsMenu);
 
             Pool.Add(mainMenu);
             Pool.Add(modelsMenu);
@@ -122,7 +124,7 @@ namespace NALRage.Engine.UI.Menus
                     Game.DisplayHelp("Press ~INPUT_CONTEXT~ to buy weapon.");
                 }
             }
-            // ReSharper disable once FunctionNeverReturns
+
         }
 
         private static void ItemClassic_Activated(object sender, EventArgs e)

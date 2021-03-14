@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Rage;
 
 namespace NALRage.Engine.Modification.Custom.Inventory
 {
@@ -35,7 +37,7 @@ namespace NALRage.Engine.Modification.Custom.Inventory
             // If the type was not found, return an invalid type
             if (type == null)
             {
-                Notification.Show($"~o~Warning~s~: Item Type {(string)@object["type"]} was not found. Make sure that all of the required mods are installed and reload PlayerCompanion.");
+                Game.DisplayNotification($"~o~Warning~s~: Item Type {(string)@object["type"]} was not found. Make sure that all of the required mods are installed and reload PlayerCompanion.");
                 return new InvalidItem((string)@object["type"], count);
             }
 
@@ -62,7 +64,7 @@ namespace NALRage.Engine.Modification.Custom.Inventory
             // If this is an invalid item, save the type in the property
             if (value is InvalidItem invalid)
             {
-                @object["type"] = invalid.Type;
+                @object["type"] = "INVALID_type";
             }
             // Otherwise, save the real Type
             else
