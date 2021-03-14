@@ -3,7 +3,7 @@
 
 using NALRage.Engine;
 using NALRage.Engine.Extensions;
-using NALRage.Engine.Menus;
+using NALRage.Engine.UI.Menus;
 using NALRage.Engine.Modification;
 using NALRage.Engine.Modification.API;
 using NALRage.Engine.Modification.API.Events;
@@ -30,7 +30,6 @@ namespace NALRage
     /// </summary>
     public static class Entry
     {
-        // TODO make this for game manager to use
         internal static readonly List<uint> ArmedIds = new List<uint>();
         internal static readonly List<Blip> Blips = new List<Blip>();
         
@@ -40,7 +39,7 @@ namespace NALRage
 
         [ConsoleCommand(Name = "ReloadConfigs", Description = "Reloads configuration of NAL.")]
         private static void GetConfig()
-        { 
+        {
             ConfigurationHandler.Init();
             config = ConfigurationHandler.Config;
         }
@@ -49,7 +48,9 @@ namespace NALRage
         /// The initializer method of the NAL.
         /// <b>Do not</b> call directly. This will break the whole game.
         /// </summary>
+#pragma warning disable S4210 // Windows Forms entry points should be marked with STAThread
         public static void Main()
+#pragma warning restore S4210 // Windows Forms entry points should be marked with STAThread
         {
             try
             {
@@ -61,11 +62,7 @@ namespace NALRage
 
                 NativeFunction.Natives.x0888C3502DBBEEF5(); // ON_ENTER_MP
                 NativeFunction.Natives.x9BAE5AD2508DF078(1); // SET_INSTANCE_PRIORITY_MODE
-
-#if DEBUG
-                Game.DisplayHelp("You are in debug mode. Please attach a debugger.");
-                //Debug.AttachAndBreak();
-#endif
+                Functions.IsInRiot = true;
 
                 Logger.Info("Main", "Map loaded. Changing player model...");
                 Game.LocalPlayer.Model = "a_m_m_bevhills_02";
@@ -96,9 +93,10 @@ namespace NALRage
 #endif
                 Logger.Info("Main", "DONE!");
                 Game.DisplayHelp("Welcome to NoArtifactLights!");
+
+                NativeFunction.Natives.x92F0DA1E27DB96DC(210);
                 Game.DisplayNotification("You have currently playing the ~h~RAGE Plug-in Hook~s~ version.");
 
-                Game.RawFrameRender += Game_RawFrameRender;
                 GameFiber.Hibernate();
             }
             catch (ThreadAbortException)
@@ -107,8 +105,10 @@ namespace NALRage
             }
             catch (Exception ex)
             {
-                CrashReporter cr = new CrashReporter(ex);
-                cr.ReportAndCrashPlugin();
+                Game.DisplayHelp("There was an error prevents NAL from loading. See the log for more information.");
+                Game.LogTrivial(ex.ToString());
+                Game.LogTrivial("------------------- END OF CURRENT STATE -------------------");
+                throw;
             }
             finally
             {
@@ -126,7 +126,7 @@ namespace NALRage
         {
             if (crashed)
             {
-                Logger.Fatal("Main", "RAGE Plugin Hook is shutting down the mod because an unhandled exception.");
+                Logger.Fatal("Main", "RAGE Plug-in Hook is shutting down the mod because an un-handled exception.");
                 Logger.Fatal("Main", "You are advised to check the log.");
             }
             foreach (var blip in Blips)
@@ -136,16 +136,6 @@ namespace NALRage
                     blip.Delete();
                 }
             }
-        }
-
-        private static void Game_RawFrameRender(object sender, GraphicsEventArgs e)
-        {
-            //if (debugScreen)
-            //{
-            //    e.Graphics.DrawText("NoArtifactLights for Rage", "Courier New", 20f, new PointF(20, 20), Color.Red);
-            //    e.Graphics.DrawText("Current event status: ", "Courier New", 20f, new PointF(20, 50), Color.Red);
-            //}
-            //e.Graphics.DrawText("Temporary Hungry: " + HungryManager.Precentage, "Courier New", 12f, new PointF(20, 20), Color.Red);
         }
     }
 }

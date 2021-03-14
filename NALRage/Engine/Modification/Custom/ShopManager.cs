@@ -1,7 +1,7 @@
 using System.IO;
 using System.Xml.Serialization;
 using LemonUI.Menus;
-using NALRage.Engine.Menus;
+using NALRage.Engine.UI.Menus;
 using NALRage.Engine.Modification.API;
 using NALRage.Entities.Serialization.Customization;
 using Rage;

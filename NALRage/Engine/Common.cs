@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using LemonUI.Scaleform;
 using NALRage.Entities;
 
@@ -23,6 +25,11 @@ namespace NALRage.Engine
         /// You may use <see cref="Modification.API.Functions.BlackoutStatus"/> to set this property.
         /// </summary>
         public static bool Blackout { get; internal set; }
+
+        /// <summary>
+        /// Gets a value indicating whether the pedestrians will fight each other.
+        /// </summary>
+        public static bool Riot { get; internal set; }
 
         /// <summary>
         /// Gets a value indicating whether the mod should be ticking. 

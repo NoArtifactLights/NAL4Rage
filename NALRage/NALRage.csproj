@@ -52,8 +52,13 @@
     <Compile Include="Engine\Extensions\PluginManager.cs" />
     <Compile Include="Engine\GameContentUtils.cs" />
     <Compile Include="Engine\HungryUtils.cs" />
-    <Compile Include="Engine\Menus\InventoryMenuManager.cs" />
-    <Compile Include="Engine\Menus\MenuManager.cs" />
+    <Compile Include="Engine\Identifier.cs" />
+    <Compile Include="Engine\Modification\Custom\InventoryManager.cs" />
+    <Compile Include="Engine\Modification\Custom\Inventory\Item.cs" />
+    <Compile Include="Engine\Modification\Custom\Inventory\ItemConverter.cs" />
+    <Compile Include="Engine\Modification\Custom\Inventory\PlayerInventory.cs" />
+    <Compile Include="Engine\Modification\Custom\Inventory\StackableItem.cs" />
+    <Compile Include="Engine\UI\Menus\MenuManager.cs" />
     <Compile Include="Engine\Modification\API\Events\Event.cs" />
     <Compile Include="Engine\Modification\API\Events\EventManager.cs" />
     <Compile Include="Engine\Modification\API\Events\Integrated\ArmedPed.cs" />
@@ -70,10 +75,6 @@
     <Compile Include="Engine\SaveUtils.cs" />
     <Compile Include="Engine\WeaponShopUtils.cs" />
     <Compile Include="Entities\Difficulty.cs" />
-    <Compile Include="Entities\Item.cs" />
-    <Compile Include="Entities\ItemResult.cs" />
-    <Compile Include="Entities\ItemStack.cs" />
-    <Compile Include="Entities\PlayerInventory.cs" />
     <Compile Include="Entities\Serialization\Configuration.cs" />
     <Compile Include="Entities\Serialization\Customization\FoodItem.cs" />
     <Compile Include="Entities\Serialization\Customization\FoodShop.cs" />

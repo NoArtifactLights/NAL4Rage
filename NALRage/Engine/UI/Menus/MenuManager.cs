@@ -9,7 +9,7 @@ using LemonUI;
 using LemonUI.Menus;
 using System;
 
-namespace NALRage.Engine.Menus
+namespace NALRage.Engine.UI.Menus
 {
     /// <summary>
     /// The general handler thread for all menus in NAL.

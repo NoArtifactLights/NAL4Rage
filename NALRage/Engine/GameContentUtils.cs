@@ -11,7 +11,6 @@ namespace NALRage.Engine
     public static class GameContentUtils
     {
         private static readonly RelationshipGroup CivilianMale = new RelationshipGroup("CIVMALE");
-        private static readonly RelationshipGroup CivilianFemale = new RelationshipGroup("CIVFEMALE");
 
         /// <summary>
         /// Updates the relationship status according to the specified difficulty.
@@ -19,10 +18,6 @@ namespace NALRage.Engine
         /// <param name="difficulty">The difficulty.</param>
         public static void SetRelationship(Difficulty difficulty)
         {
-            Game.SetRelationshipBetweenRelationshipGroups(CivilianMale, CivilianFemale, Relationship.Hate);
-            Game.SetRelationshipBetweenRelationshipGroups(CivilianMale, CivilianMale, Relationship.Hate);
-            Game.SetRelationshipBetweenRelationshipGroups(CivilianFemale, CivilianMale, Relationship.Hate);
-            Game.SetRelationshipBetweenRelationshipGroups(CivilianFemale, CivilianFemale, Relationship.Hate);
             Game.SetRelationshipBetweenRelationshipGroups(RelationshipGroup.Player, RelationshipGroup.Cop, Relationship.Companion);
             Game.SetRelationshipBetweenRelationshipGroups(RelationshipGroup.Cop, RelationshipGroup.Player, Relationship.Companion);
             switch (difficulty)

@@ -1,4 +1,4 @@
-﻿using NALRage.Engine.Modification.API.Events;
+using NALRage.Engine.Modification.API.Events;
 using NALRage.Entities;
 using Rage;
 using Rage.Exceptions;
@@ -6,6 +6,7 @@ using Rage.Native;
 using System;
 using System.Windows.Forms;
 using NALRage.Engine.Modification.GameFibers;
+using System.Runtime.CompilerServices;
 
 namespace NALRage.Engine.Modification.API
 {
@@ -31,6 +32,20 @@ namespace NALRage.Engine.Modification.API
             {
                 NativeFunction.Natives.x1268615ACE24D504(value);
                 Common.Blackout = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the pedestrians will fight each other.
+        /// Randomly assigns weapon to these pedestrians.
+        /// </summary>
+        public static bool IsInRiot
+        {
+            get => Common.Riot;
+            set
+            {
+                NativeFunction.Natives.SET_RIOT_MODE_ENABLED(value);
+                Common.Riot = value;
             }
         }
 
@@ -77,9 +92,9 @@ namespace NALRage.Engine.Modification.API
         /// <param name="value">The hungry amount to increase. If more than <c>10.0F</c>, it will be <c>10.0F</c>.</param>
         public static void IncreaseHungry(float value)
         {
-            var clamped = value.LimitRange(0f, 10.0f);
             var tempHungry = HungryManager.Hungry += value;
             tempHungry = tempHungry.LimitRange(0f, 10.0f);
+            HungryManager.Hungry = tempHungry;
         }
 
         /// <summary>
@@ -133,6 +148,8 @@ namespace NALRage.Engine.Modification.API
                     Sprite = BlipSprite.Garage,
                     Name = "Repair Vehicle"
                 };
+
+                Entry.Blips.Add(blip);
             }
         }
 
