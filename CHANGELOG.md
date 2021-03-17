@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 * :bug: means a bug fix
 * :bomb: means something removed
 
-## Unreleased
+## 0.5 Beta 21888 (SN: 0317-2021-21888)
 
 * :sparkles: Use in-game native Riot feature to present Riot
   
@@ -22,13 +22,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 * :sparkles: LUI4Rage is now used for menus
 
-* :bug: Fixed never wanted not functioning
-
 * :bomb: Removed appearance
 
 #### API Only changes
 
 * :sparkles: Direct access to Hungry property in functions 
+
+#### Bug Fixes
+
+* Fixed never wanted not functioning
 
 ## 0.4.1
 
