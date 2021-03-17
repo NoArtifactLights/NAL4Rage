@@ -11,7 +11,6 @@ namespace NALRage.Engine.Modification.GameFibers
     internal static class GameManager
     {
         private static readonly List<PoolHandle> ProcessedPeds = new List<PoolHandle>();
-        // private static List<PoolHandle> armedPeds = new List<PoolHandle>();
         private static readonly List<PoolHandle> KilledPeds = new List<PoolHandle>();
         private static bool forceEvent;
         
@@ -28,8 +27,13 @@ namespace NALRage.Engine.Modification.GameFibers
             while (Common.InstanceRunning)
             {
                 GameFiber.Sleep(100);
-                Ped[] peds = World.GetAllPeds();
-                foreach (Ped p in peds)
+                if (Game.LocalPlayer.WantedLevel != 0) // Avoid unnecessary set native
+                {
+                    Game.LocalPlayer.WantedLevel = 0;
+                }
+
+                var peds = World.GetAllPeds();
+                foreach (var p in peds)
                 {
                     GameFiber.Yield();
                     if (!p.Exists()) continue;
@@ -55,7 +59,6 @@ namespace NALRage.Engine.Modification.GameFibers
                     }
                 }
 
-                // TODO could be merged with the upper one?
                 foreach (var eventPed in peds)
                 {
                     if (!eventPed.Exists()) continue;
@@ -67,7 +70,6 @@ namespace NALRage.Engine.Modification.GameFibers
                         !Entry.ArmedIds.Contains(eventPed.Handle) &&
                         eventPed.Model.Name != "s_m_y_cop_01" && eventPed.Model.Name != "s_f_y_cop_01" &&
                         eventPed.RelationshipGroup != RelationshipGroup.Cop && !eventPed.IsPlayer)
-                        // TODO enforce no cop in selection policy
                     {
                         ProcessedPeds.Add(eventPed.Handle);
                         EventManager.StartRandomEvent(eventPed);

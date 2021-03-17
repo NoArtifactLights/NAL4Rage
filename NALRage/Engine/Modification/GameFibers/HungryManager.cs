@@ -11,9 +11,9 @@ namespace NALRage.Engine.Modification.GameFibers
 {
     internal static class HungryManager
     {
-        internal static float Hungry = 10f;
-
+        private static TimerBarCollection collection;
         private static TimerBarProgress hungryBar;
+        internal static float Hungry { get; set; } = 10f;
 
         [ConsoleCommand("Refills the hungry value.")]
         public static void RefillHungry()
@@ -26,7 +26,9 @@ namespace NALRage.Engine.Modification.GameFibers
 
         private static void Init()
         {
+            collection = new TimerBarCollection();
             hungryBar = new TimerBarProgress("Hungry");
+            collection.Add(hungryBar);
         }
 
         internal static void DrawingFiber()
@@ -34,7 +36,7 @@ namespace NALRage.Engine.Modification.GameFibers
             while (Common.InstanceRunning)
             {
                 GameFiber.Yield();
-                hungryBar.Draw();
+                collection.Process();
             }
         }
 

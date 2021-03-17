@@ -16,10 +16,27 @@ namespace NALRage.Engine.Modification.API
     public static class Functions
     {
         /// <summary>
+        /// Gets or sets the hungry value of the player.
+        /// </summary>
+        /// <value>
+        /// A <see cref="float"/> of <c>0.0F</c> to <c>10.0F</c>. Values not in the range will be capped to range.
+        /// </value>
+        public static float Hungry
+        {
+            get => HungryManager.Hungry;
+            set
+            {
+                var tempHungry = value;
+                tempHungry = tempHungry.LimitRange(0f, 10.0f);
+                HungryManager.Hungry = tempHungry;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether the game is in blackout.
         /// </summary>
         /// <value>
-        /// <see langword="true"/> if the San Andreas is currently in blackout; otherwise, <see langword="false"/>.
+        /// <see langword="true"/> if the game world is currently in blackout; otherwise, <see langword="false"/>.
         /// </value>
         /// <remarks>
         /// <note type="important">Do <b>not</b> use <c>SET_ARTIFICIAL_LIGHTS_STATE</c> for setting blackout status. You should use this property instead.

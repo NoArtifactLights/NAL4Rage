@@ -17,6 +17,7 @@ namespace NALRage.Engine.UI.Menus
     public static class MenuManager
     {
         internal static ObjectPool Pool { get; set; } = new ObjectPool();
+#pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
         private static NativeMenu mainMenu;
         private static NativeItem itemSave;
         private static NativeItem itemLoad;
@@ -30,15 +31,21 @@ namespace NALRage.Engine.UI.Menus
         private static NativeMenu buyMenu;
         private static NativeItem itemPistol;
         private static NativeItem itemPumpShotgun;
+        private static NativeItem itemMicroSMG;
         private static NativeItem itemBodyArmor;
 
         private static NativeMenu foodMenu;
         private static NativeItem itemHamburger;
 
-        private static NativeMenu modelsMenu;
-        private static NativeItem itemCop;
-        private static NativeItem itemClassic;
+
+#pragma warning disable S125 // Sections of code should not be commented out
+                            //private static NativeMenu modelsMenu;
+                            //private static NativeItem itemCop;
+                            //private static NativeItem itemClassic;
         private static bool noticed;
+#pragma warning restore S125 // Sections of code should not be commented out
+
+#pragma warning restore S1450 // Private fields only used as local variables in methods should become local variables
 
         internal static void FiberInit()
         {
@@ -49,6 +56,10 @@ namespace NALRage.Engine.UI.Menus
             itemCallCops = new NativeItem("Call the Cops", "Call for police services.");
             itemDifficulty = new NativeItem("Difficulty", "Views the current difficulty.");
             itemKills = new NativeItem("Kills", "Views the current kill count.");
+            itemAppearance = new NativeItem("Appearance", "Obsolete and not available. Will be updated in the new version.")
+            {
+                Enabled = false
+            };
 
             itemCash = new NativeItem("Cash", "Views the current cash amount.");
             mainMenu.Add(itemLights);
@@ -57,31 +68,39 @@ namespace NALRage.Engine.UI.Menus
             mainMenu.Add(itemCallCops);
             mainMenu.Add(itemDifficulty);
             mainMenu.Add(itemKills);
-
+            mainMenu.Add(itemAppearance);
             mainMenu.Add(itemCash);
             itemLights.CheckboxChanged += ItemLights_CheckboxEvent;
             itemSave.Activated += ItemSave_Activated;
             itemLoad.Activated += ItemLoad_Activated;
             itemCallCops.Activated += ItemCallCops_Activated;
 
-            modelsMenu = new NativeMenu("Appearance", "Appearance Menu", "Modifies your appearance.");
-            itemCop = new NativeItem("Male Cop", "The male police officer.");
-            itemClassic = new NativeItem("Classic", "The classic NAL load model.");
-            itemCop.Activated += ItemCop_Activated;
-            itemClassic.Activated += ItemClassic_Activated;
-            modelsMenu.Add(itemClassic);
-            modelsMenu.Add(itemCop);
 
-            itemAppearance = mainMenu.AddSubMenu(modelsMenu);
+#pragma warning disable S125 // Sections of code should not be commented out
+            //modelsMenu = new NativeMenu("Appearance", "Appearance Menu", "Modifies your appearance.");
+            //itemCop = new NativeItem("Male Cop", "The male police officer.");
+            //itemClassic = new NativeItem("Classic", "The classic NAL load model.");
+            //itemCop.Activated += ItemCop_Activated;
+            //itemClassic.Activated += ItemClassic_Activated;
+            //modelsMenu.Add(itemClassic);
+            //modelsMenu.Add(itemCop);
+
+
+#pragma warning restore S125 // Sections of code should not be commented out
 
             Pool.Add(mainMenu);
-            Pool.Add(modelsMenu);
+
+#pragma warning disable S125 // Sections of code should not be commented out
+            //Pool.Add(modelsMenu);
             buyMenu = new NativeMenu("Guns", "Weapon Shop");
-            itemPistol = WeaponShopUtils.GenerateWeaponSellerItem("Pistol Ammo x100", "A personal defense weapon that is easy to carry, but has limited clip.", 1000);
-            itemPumpShotgun = WeaponShopUtils.GenerateWeaponSellerItem("Pump Shotgun Ammo x50", "A weapon has short range but has strong power when enemy comes close.", 2000);
-            itemBodyArmor = WeaponShopUtils.GenerateWeaponSellerItem("Standard Body Armor", "This armor can defend one shotgun round in min-range and can defend several pistol rounds.", 3500);
+#pragma warning restore S125 // Sections of code should not be commented out
+            itemPistol = WeaponShopUtils.GenerateWeaponSellerItem("Pistol Ammo x100", "A personal defense weapon that is easy to carry, but has limited clip.", 100);
+            itemPumpShotgun = WeaponShopUtils.GenerateWeaponSellerItem("Pump Shotgun Ammo x50", "A weapon has short range but has strong power when enemy comes close.", 150);
+            itemMicroSMG = WeaponShopUtils.GenerateWeaponSellerItem("Micro SMG Ammo x50", "Simple automatic weapon for everyone. Can shoot from cars.", 200);
+            itemBodyArmor = WeaponShopUtils.GenerateWeaponSellerItem("Standard Body Armor", "This armor can defend one shotgun round in min-range and can defend several pistol rounds.", 350);
             itemPistol.Activated += ItemPistol_Activated;
             itemPumpShotgun.Activated += ItemPumpShotgun_Activated;
+            itemMicroSMG.Activated += (sender, e) => WeaponShopUtils.SellWeapon(200, 50, WeaponHash.MicroSMG);
             itemBodyArmor.Activated += ItemBodyArmor_Activated;
             buyMenu.Add(itemPistol);
             buyMenu.Add(itemPumpShotgun);
@@ -101,8 +120,6 @@ namespace NALRage.Engine.UI.Menus
                 if (!noticed)
                 {
                     noticed = true;
-                    //Game.DisplayNotification("NoArtifactLights ~b~has been loaded~s~. ~g~Enjoy!~s~");
-                    //Game.LogTrivial("MenuManager thread has entered loop. Enjoy!");
                 }
                 if (!buyMenu.Visible)
                 {
@@ -127,26 +144,30 @@ namespace NALRage.Engine.UI.Menus
 
         }
 
-        private static void ItemClassic_Activated(object sender, EventArgs e)
-        {
-            // ReSharper disable once StringLiteralTypo
-            ChangeModel("a_m_m_bevhills_02", itemClassic);
-        }
+        //private static void ItemClassic_Activated(object sender, EventArgs e)
 
-        private static void ItemCop_Activated(object sender, EventArgs e)
-        {
-            ChangeModel("s_m_y_cop_01", itemCop);
-        }
+#pragma warning disable S125 // Sections of code should not be commented out
+        //{
+        //    ChangeModel("a_m_m_bevhills_02", itemClassic);
+        //}
 
-        private static void ChangeModel(string model, NativeItem origin)
-        {
-            SaveUtils.SaveManager.Save(Common.Blackout);
-            Game.LocalPlayer.Model = model;
-            SaveUtils.SaveManager.Load();
-            itemClassic.Enabled = true;
-            itemCop.Enabled = true;
-            origin.Enabled = false;
-        }
+        //private static void ItemCop_Activated(object sender, EventArgs e)
+        //{
+        //    ChangeModel("s_m_y_cop_01", itemCop);
+        //}
+
+        //        private static void ChangeModel(string model, NativeItem origin)
+
+        //        {
+        //            SaveUtils.SaveManager.Save(Common.Blackout);
+        //            Game.LocalPlayer.Model = model;
+        //            SaveUtils.SaveManager.Load();
+        //            itemClassic.Enabled = true;
+        //            itemCop.Enabled = true;
+        //            origin.Enabled = false;
+        //        }
+
+#pragma warning restore S125 // Sections of code should not be commented out
 
         private static void ItemBodyArmor_Activated(object sender, EventArgs e) => WeaponShopUtils.SellArmor(70, 350);
 
@@ -169,9 +190,6 @@ namespace NALRage.Engine.UI.Menus
             SaveUtils.SaveManager.Save(Common.Blackout);
         }
 
-        private static void ItemLights_CheckboxEvent(object sender, EventArgs e)
-        {
-            Functions.BlackoutStatus = itemLights.Checked;
-        }
+        private static void ItemLights_CheckboxEvent(object sender, EventArgs e) => Functions.BlackoutStatus = itemLights.Checked;
     }
 }
