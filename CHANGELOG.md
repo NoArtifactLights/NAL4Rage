@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 * :sparkles: means a nearly-done feature and is tested
 * :construction: means a new feature just been implemented and is not tested
 * :newspaper: means a change in the docs included
+* :bug: means a bug fix
+* :bomb: means something removed
 
 ## Unreleased
 
@@ -17,6 +19,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   * People will now fight each other
   
   * People will now randomly carry weapons
+
+* :sparkles: LUI4Rage is now used for menus
+
+* :bug: Fixed never wanted not functioning
+
+* :bomb: Removed appearance
+
+#### API Only changes
+
+* :sparkles: Direct access to Hungry property in functions 
 
 ## 0.4.1
 
