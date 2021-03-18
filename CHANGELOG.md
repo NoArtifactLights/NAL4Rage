@@ -6,15 +6,56 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Legends
 
+## New
+
+* :sparkles: **New Feature:**
+  
+  A new feature has been added.
+
+* :construction: **WIP Feature:**
+  
+  A new feature has been added but it is still a work-in-progress.
+
+* :bug: **Fixed bug:**
+  
+  Fixed a bug.
+
+* :wastebasket: **Removed:**
+  
+  Removed a feature.
+
+* :newspaper: **Documentation:**
+  
+  Added or updated a documentation.
+
+* :stopwatch: **Improvement:**
+  
+  A feature has been changed.
+
+### Old
+
 * :sparkles: means a nearly-done feature and is tested
 * :construction: means a new feature just been implemented and is not tested
 * :newspaper: means a change in the docs included
 * :bug: means a bug fix
 * :bomb: means something removed
 
-## Unreleased
+## 0.5 Beta 37344 (SN: 0318-2021-37344)
 
-* :sparkles: Money amount display on the upper-right corner
+* :sparkles: **New Feature:** Money amount display on the upper-right corner.
+
+* :stopwatch: **Improvement:** Riot can now be configurated in configuration file.
+
+* :stopwatch: **Improvement:** Changed the configuration file location:
+  
+  * From `Grand Theft Auto V\NALRage.ini`,
+  * To `Grand Theft Auto V\NAL\settings.ini`.
+  
+  **WARNING!** Older configs will *not be merged* in this version. 
+
+* :stopwatch: **Improvement:** Riot mode will be switched off when unloading the plugin. 
+
+For players, this version includes a new fixed version of LUI4Rage which fixes dozens of issues.
 
 ## 0.5 Beta 21888 (SN: 0317-2021-21888)
 

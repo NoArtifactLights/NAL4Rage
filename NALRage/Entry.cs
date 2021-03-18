@@ -133,6 +133,7 @@ namespace NALRage
                 Logger.Fatal("Main", "RAGE Plug-in Hook is shutting down the mod because an un-handled exception.");
                 Logger.Fatal("Main", "You are advised to check the log.");
             }
+
             foreach (var blip in Blips)
             {
                 if (blip)
@@ -140,6 +141,8 @@ namespace NALRage
                     blip.Delete();
                 }
             }
+
+            Functions.IsInRiot = false;
         }
     }
 }
