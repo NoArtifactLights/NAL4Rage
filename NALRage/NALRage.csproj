@@ -59,6 +59,8 @@
     <Compile Include="Engine\Modification\Custom\Inventory\ItemConverter.cs" />
     <Compile Include="Engine\Modification\Custom\Inventory\PlayerInventory.cs" />
     <Compile Include="Engine\Modification\Custom\Inventory\StackableItem.cs" />
+    <Compile Include="Engine\UI\Hud.cs" />
+    <Compile Include="Engine\UI\HudComponent.cs" />
     <Compile Include="Engine\UI\Menus\MenuManager.cs" />
     <Compile Include="Engine\Modification\API\Events\Event.cs" />
     <Compile Include="Engine\Modification\API\Events\EventManager.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Engine\Modification\GameFibers\HungryManager.cs" />
     <Compile Include="Engine\Modification\GameFibers\RespawnManager.cs" />
     <Compile Include="Engine\SaveUtils.cs" />
+    <Compile Include="Engine\UI\MoneyRenderManager.cs" />
     <Compile Include="Engine\WeaponShopUtils.cs" />
     <Compile Include="Entities\Difficulty.cs" />
     <Compile Include="Entities\Serialization\Configuration.cs" />
