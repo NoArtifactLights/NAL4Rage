@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using NALRage.Engine.Modification.Custom;
+using NALRage.Engine.UI;
 
 // Experimental, May Fail!
 [assembly: Plugin("NoArtifactLights", Author = "RelaperCrystal", Description = "The NoArtifactLights Project for RAGE Plug-in Hook", EntryPoint = "NALRage.Entry.Main", PrefersSingleInstance = true)]
@@ -60,9 +61,9 @@ namespace NALRage
                 GetConfig();
                 Logger.Info("Main", "Setting prop density and loading GTAO map...");
 
-                NativeFunction.Natives.x0888C3502DBBEEF5(); // ON_ENTER_MP
-                NativeFunction.Natives.x9BAE5AD2508DF078(1); // SET_INSTANCE_PRIORITY_MODE
-                Functions.IsInRiot = true;
+                NativeFunction.Natives.x0888C3502DBBEEF5(); // ON_ENTER_MP, so we load the map
+                NativeFunction.Natives.x9BAE5AD2508DF078(1); // SET_INSTANCE_PRIORITY_MODE, so we set the props
+                Functions.IsInRiot = ConfigurationHandler.Config.Riot;
 
                 Logger.Info("Main", "Map loaded. Changing player model...");
                 Game.LocalPlayer.Model = "a_m_m_bevhills_02";
@@ -73,18 +74,21 @@ namespace NALRage
                 Game.MaxWantedLevel = 0;
                 GameContentUtils.SetRelationship(Difficulty.Initial);
                 Functions.BlackoutStatus = true;
-
                 EventManager.RegisterEvent(typeof(ArmedPed));
+
                 Logger.Info("Main", "GameFiber > MenuManager.FiberInit > Creating & Starting Instance");
                 GameFiber.StartNew(MenuManager.FiberInit, "MenuManager");
                 Logger.Info("Main", "GameFiber > GameManager.ProcessEach100 > Creating & Starting Instance");
                 process = GameFiber.StartNew(GameManager.ProcessEach100, "Process");
                 Logger.Info("Main", "GameFiber > HungryManager.FiberNew > Creating & Start Instance");
                 HungryUtils.StartFiber();
-                Logger.Info("Main", "GameFiber > ShopManager.Fiber > Creating & Starting  Instance");
+                Logger.Info("Main", "GameFiber > ShopManager.Fiber > Creating & Starting Instance");
                 shops = GameFiber.StartNew(ShopManager.Loop, "ShopManager");
                 Logger.Info("Main", "GameFiber > RespawnManager.Loop() > Starting");
                 GameFiber.StartNew(RespawnManager.Loop);
+                Logger.Info("Main", "GameFiber > MoneyRenderManager.Loop() > Starting Instance");
+                GameFiber.StartNew(MoneyRenderManager.Fiber);
+
                 GameFiber.Sleep(5000);
                 Game.FadeScreenIn(1000);
 #if DEBUG
@@ -94,7 +98,7 @@ namespace NALRage
                 Logger.Info("Main", "DONE!");
                 Game.DisplayHelp("Welcome to NoArtifactLights!");
 
-                NativeFunction.Natives.x92F0DA1E27DB96DC(210);
+                NativeFunction.Natives.x92F0DA1E27DB96DC(210); // set notification colors
                 Game.DisplayNotification("You have currently playing the ~h~RAGE Plug-in Hook~s~ version.");
 
                 GameFiber.Hibernate();

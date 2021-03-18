@@ -15,11 +15,13 @@ namespace NALRage.Entities.Serialization.Customization
         /// <summary>
         /// Gets or sets the position of this <see cref="FoodShop"/>.
         /// </summary>
-        public SerializablePosition Position;
+        public SerializablePosition Position { get; set; }
 
         /// <summary>
         /// Gets or sets the items of this <see cref="FoodShop"/>.
         /// </summary>
-        public FoodItem[] Items;
+#pragma warning disable CA1819 // Properties should not return arrays
+        public FoodItem[] Items { get; set; }
+#pragma warning restore CA1819 // Properties should not return arrays
     }
 }

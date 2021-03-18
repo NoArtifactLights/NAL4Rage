@@ -1,4 +1,4 @@
-﻿using NALRage.Entities.Serialization;
+using NALRage.Entities.Serialization;
 using Rage;
 using System;
 
@@ -6,7 +6,7 @@ namespace NALRage.Engine.Modification
 {
     internal static class ConfigurationHandler
     {
-        private static readonly InitializationFile InitializationFile = new InitializationFile("NALRage.ini");
+        private static readonly InitializationFile InitializationFile = new InitializationFile("NAL\\settings.ini");
         private static Configuration configuration;
 
         internal static Configuration Config => configuration;
@@ -18,6 +18,7 @@ namespace NALRage.Engine.Modification
             InitializationFile.Write("Main", "Version", configuration.Version);
             InitializationFile.Write("Main", "DefaultDifficulty", configuration.DefaultDifficulty);
             InitializationFile.Write("Main", "LoopInterval", configuration.ProcessInterval);
+            InitializationFile.Write("Main", "Riot", configuration.Riot);
             InitializationFile.Write("Event", "RequirementChance", configuration.EventRequirement);
             InitializationFile.Write("Event", "MaxValue", configuration.EventMax);
             InitializationFile.Write("Event", "MinimalValue", configuration.EventMinimal);

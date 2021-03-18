@@ -7,6 +7,7 @@ using System;
 using System.Windows.Forms;
 using NALRage.Engine.Modification.GameFibers;
 using System.Runtime.CompilerServices;
+using Rage.Attributes;
 
 namespace NALRage.Engine.Modification.API
 {

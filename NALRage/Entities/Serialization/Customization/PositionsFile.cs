@@ -11,6 +11,8 @@ namespace NALRage.Entities.Serialization.Customization
         /// <summary>
         /// Gets or sets the collection of positions.
         /// </summary>
-        public SerializablePosition[] Positions;
+#pragma warning disable CA1819 // Properties should not return arrays
+        public SerializablePosition[] Positions { get; set; }
+#pragma warning restore CA1819 // Properties should not return arrays
     }
 }

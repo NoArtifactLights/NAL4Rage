@@ -1,4 +1,4 @@
-﻿using NALRage.Engine.Modification.API.Events;
+using NALRage.Engine.Modification.API.Events;
 
 namespace NALRage.Entities.Serialization
 {
@@ -19,6 +19,7 @@ namespace NALRage.Entities.Serialization
             EventMinimal = 9;
             ProcessInterval = 100;
             DefaultDifficulty = Difficulty.Initial;
+            Riot = true;
         }
 
         /// <summary>
@@ -62,5 +63,6 @@ namespace NALRage.Entities.Serialization
         /// Gets or sets the default difficulty of the modification.
         /// </summary>
         public Difficulty DefaultDifficulty { get; set; }
+        public bool Riot { get; internal set; }
     }
 }

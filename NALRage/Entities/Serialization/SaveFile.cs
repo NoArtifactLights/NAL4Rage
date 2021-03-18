@@ -45,7 +45,9 @@ namespace NALRage.Entities.Serialization
         /// <summary>
         /// An array of all weapons.
         /// </summary>
+#pragma warning disable CA1819 // Properties should not return arrays
         public SaveWeaponDescriptor[] Weapons { get; set; }
+#pragma warning restore CA1819 // Properties should not return arrays
         /// <summary>
         /// The armor amount of the player.
         /// </summary>

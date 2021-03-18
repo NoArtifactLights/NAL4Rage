@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace NALRage.Entities.Serialization.Customization
 {
@@ -11,6 +11,6 @@ namespace NALRage.Entities.Serialization.Customization
         /// <summary>
         /// Represents a list of all food shops defined in this file.
         /// </summary>
-        public FoodShop[] Shops;
+        public FoodShop[] Shops { get; set; }
     }
 }

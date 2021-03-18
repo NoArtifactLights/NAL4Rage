@@ -17,18 +17,18 @@ namespace NALRage.Entities.Serialization.Customization
         /// Gets or sets the display name of this <see cref="FoodItem"/>.
         /// </summary>
         [XmlAttribute]
-        public string Name;
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the amount of hungry that this <see cref="FoodItem"/> increases when used.
         /// </summary>
         [XmlAttribute]
-        public float Amount;
+        public float Amount { get; set; }
 
         /// <summary>
         /// Gets or sets the amount of NAL$ that this <see cref="FoodItem"/> costs.
         /// </summary>
         [XmlAttribute]
-        public int Price;
+        public int Price { get; set; }
     }
 }

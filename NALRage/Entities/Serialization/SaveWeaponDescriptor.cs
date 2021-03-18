@@ -15,10 +15,11 @@ namespace NALRage.Entities.Serialization
         /// <exception cref="ArgumentNullException">The weapon is null.</exception>
         public SaveWeaponDescriptor(WeaponDescriptor wd)
         {
-            if(wd == null)
+            if (wd == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(wd));
             }
+
             Hash = wd.Hash;
             Ammo = wd.Ammo;
             LoadedAmmo = wd.LoadedAmmo;

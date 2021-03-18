@@ -11,17 +11,17 @@ namespace NALRage.Entities.Serialization.Customization
         /// <summary>
         /// The name of the weapon.
         /// </summary>
-        public string WeaponName;
+        public string WeaponName { get; set; }
 
         /// <summary>
         /// The price of the weapon.
         /// Beware of that the price of buying a new weapon and buying ammos of the weapons are the same.
         /// </summary>
-        public int Price;
+        public int Price { get; set; }
 
         /// <summary>
         /// The amount of the ammo.
         /// </summary>
-        public int AmmoAmount;
+        public int AmmoAmount { get; set; }
     }
 }

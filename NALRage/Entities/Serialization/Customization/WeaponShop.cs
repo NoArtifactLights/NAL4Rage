@@ -15,12 +15,12 @@ namespace NALRage.Entities.Serialization.Customization
         /// <summary>
         /// Gets or sets the name of this instance.
         /// </summary>
-        public string Name;
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the position of this instance.
         /// </summary>
-        public SerializablePosition Position;
+        public SerializablePosition Position { get; set; }
 
         /// <inheritdoc />
         public override bool Equals(object obj)

@@ -5,10 +5,10 @@ using Rage;
 namespace NALRage.Entities.Serialization
 {
     /// <summary>
-    /// Represents a <see cref="Rage.Vector3"/> that can be serialized.
+    /// Represents a <see cref="Vector3"/> that can be serialized.
     /// </summary>
     [Serializable]
-    public class SerializablePosition
+    public sealed class SerializablePosition : IEquatable<SerializablePosition>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SerializablePosition"/> class.
@@ -30,22 +30,22 @@ namespace NALRage.Entities.Serialization
         }
 
         /// <summary>
-        /// Gets the X component of this <see cref="SerializablePosition"/>
+        /// Gets or sets the X component of this <see cref="SerializablePosition"/>
         /// </summary>
         [XmlAttribute]
-        public float X;
+        public float X { get; set; }
 
         /// <summary>
-        /// Gets the Y component of this <see cref="SerializablePosition"/>
+        /// Gets or sets the Y component of this <see cref="SerializablePosition"/>
         /// </summary>
         [XmlAttribute]
-        public float Y;
+        public float Y { get; set; }
 
         /// <summary>
-        /// Gets the Z component of this <see cref="SerializablePosition"/>
+        /// Gets or sets the Z component of this <see cref="SerializablePosition"/>
         /// </summary>
         [XmlAttribute]
-        public float Z;
+        public float Z { get; set; }
 
         [NonSerialized] internal Vector3 GeneratedVector3;
 
@@ -54,12 +54,6 @@ namespace NALRage.Entities.Serialization
             GeneratedVector3 = this;
         }
         
-        /// <inheritdoc />
-        public override bool Equals(object obj)
-        {
-            return obj is SerializablePosition position && this.Equals(position);
-        }
-
         /// <summary>
         /// Determines whether this <see cref="SerializablePosition"/> is equivalent to the specified <see cref="SerializablePosition"/>.
         /// </summary>
@@ -68,34 +62,6 @@ namespace NALRage.Entities.Serialization
         public bool Equals(SerializablePosition other)
         {
             return Math.Abs(other.X - this.X) < 0.05 && Math.Abs(other.Y - this.Y) < 0.05 && Math.Abs(other.Z - this.Z) < 0.05;
-        }
-
-        /// <inheritdoc />
-        public override int GetHashCode()
-        {
-            return X.GetHashCode() + Y.GetHashCode();
-        }
-
-        /// <summary>
-        /// Determines whether the instance on the left equivalent to the instance on the right.
-        /// </summary>
-        /// <param name="left">The instance on the left.</param>
-        /// <param name="right">The instance on the right.</param>
-        /// <returns><c>true</c> if this instance is equivalent to the specified <see cref="SerializablePosition"/>; otherwise, <c>false</c>.</returns>
-        public static bool operator ==(SerializablePosition left, SerializablePosition right)
-        {
-            return left.Equals(right);
-        }
-
-        /// <summary>
-        /// Determines whether the instance on the left isn't equivalent to the instance on the right.
-        /// </summary>
-        /// <param name="left">The instance on the left.</param>
-        /// <param name="right">The instance on the right.</param>
-        /// <returns><c>true</c> if this instance isn't equivalent to the specified <see cref="SerializablePosition"/>; otherwise, <c>false</c>.</returns>
-        public static bool operator !=(SerializablePosition left, SerializablePosition right)
-        {
-            return !(left == right);
         }
 
         /// <summary>
