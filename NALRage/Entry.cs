@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Threading;
 using NALRage.Engine.Modification.Custom;
 using NALRage.Engine.UI;
+using NALRage.Engine.Modification.Character;
 
 // Experimental, May Fail!
 [assembly: Plugin("NoArtifactLights", Author = "RelaperCrystal", Description = "The NoArtifactLights Project for RAGE Plug-in Hook", EntryPoint = "NALRage.Entry.Main", PrefersSingleInstance = true)]
@@ -66,7 +67,12 @@ namespace NALRage
                 Functions.IsInRiot = ConfigurationHandler.Config.Riot;
 
                 Logger.Info("Main", "Map loaded. Changing player model...");
+#if DEBUG
+                Game.LocalPlayer.Model = "mp_f_freemode_01";
+                NextGenCharacter.ApplyNextGenCharFeatures(Game.LocalPlayer.Character);
+#else
                 Game.LocalPlayer.Model = "a_m_m_bevhills_02";
+#endif
                 Logger.Info("Main", "Changed the model, setting up game");
                 Game.LocalPlayer.Character.Position = new Vector3(459.8501f, -1001.404f, 24.91487f);
                 Game.LocalPlayer.Character.Inventory.GiveFlashlight();
