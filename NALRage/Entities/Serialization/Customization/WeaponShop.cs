@@ -25,7 +25,7 @@ namespace NALRage.Entities.Serialization.Customization
         /// <inheritdoc />
         public override bool Equals(object obj)
         {
-            return obj is WeaponShop && ((WeaponShop)obj).Name == this.Name && ((WeaponShop)obj).Position == this.Position;
+            return obj is WeaponShop weaponShop && (weaponShop).Name == this.Name && ((WeaponShop)obj).Position == this.Position;
         }
 
         /// <summary>
