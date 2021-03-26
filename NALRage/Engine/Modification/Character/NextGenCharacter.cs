@@ -8,8 +8,9 @@ namespace NALRage.Engine.Modification.Character
     {
         internal static void ApplyNextGenCharFeatures(Ped ped)
         {
-            if (ped.Model.Name != "mp_f_freemode_01")
+            if (ped.Model.Name != "MP_F_FREEMODE_01")
             {
+                Game.LogTrivial(ped.Model.Name);
                 throw new ArgumentException("Ped must be free mode female!", nameof(ped));
             }
 
@@ -20,7 +21,9 @@ namespace NALRage.Engine.Modification.Character
             ped.SetPedEyeColor(1);
             ped.SetPedHairColor(52, 11);
             ped.SetPedHeadOverlayData(2, 21, 1);
+            ped.SetPedHeadOverlayColor(2, 1, 0, 0);
             ped.SetPedHeadOverlayData(8, 4, 1);
+            ped.SetPedHeadOverlayColor(8, 2, 0, 0);
             ped.SetVariation(2, 42, 0);
             ped.SetVariation(3, 5, 0);
             ped.SetVariation(4, 12, 7);

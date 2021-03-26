@@ -56,23 +56,32 @@ namespace NALRage
         {
             try
             {
-                Game.FadeScreenOut(1000);
-                GameFiber.Sleep(1000);
                 Logger.Info("Main", "Initializing NAL...");
                 GetConfig();
                 Logger.Info("Main", "Setting prop density and loading GTAO map...");
 
+                NativeFunction.Natives.x808519373FD336A3(true); // SetPlayerIsInDirectorMode, so we hide the name
                 NativeFunction.Natives.x0888C3502DBBEEF5(); // ON_ENTER_MP, so we load the map
                 NativeFunction.Natives.x9BAE5AD2508DF078(1); // SET_INSTANCE_PRIORITY_MODE, so we set the props
                 Functions.IsInRiot = ConfigurationHandler.Config.Riot;
 
                 Logger.Info("Main", "Map loaded. Changing player model...");
 #if DEBUG
-                Game.LocalPlayer.Model = "mp_f_freemode_01";
+                var model = new Model("mp_f_freemode_01"); // request the model (for god sake)
+                model.LoadAndWait();
+                Game.LocalPlayer.Model = model;
+                Game.LogTrivial("WARNING: IF YOU ARE STILL IN CONSOLE, EXIT THE CONSOLE, NOW!!!");
+                Game.LogTrivial("WARNING: IF YOU ARE STILL IN CONSOLE, EXIT THE CONSOLE, NOW!!!");
+                Game.LogTrivial("WARNING: IF YOU ARE STILL IN CONSOLE, EXIT THE CONSOLE, NOW!!!");
+                GameFiber.Wait(500);
+                Game.LocalPlayer.Character.IsVisible = true; // It has to be set to visible manually
+                model.Dismiss();
                 NextGenCharacter.ApplyNextGenCharFeatures(Game.LocalPlayer.Character);
 #else
                 Game.LocalPlayer.Model = "a_m_m_bevhills_02";
 #endif
+                Game.FadeScreenOut(1000);
+                GameFiber.Sleep(1000);
                 Logger.Info("Main", "Changed the model, setting up game");
                 Game.LocalPlayer.Character.Position = new Vector3(459.8501f, -1001.404f, 24.91487f);
                 Game.LocalPlayer.Character.Inventory.GiveFlashlight();
@@ -92,8 +101,8 @@ namespace NALRage
                 shops = GameFiber.StartNew(ShopManager.Loop, "ShopManager");
                 Logger.Info("Main", "GameFiber > RespawnManager.Loop() > Starting");
                 GameFiber.StartNew(RespawnManager.Loop);
-                Logger.Info("Main", "GameFiber > MoneyRenderManager.Loop() > Starting Instance");
-                GameFiber.StartNew(MoneyRenderManager.Fiber);
+                //Logger.Info("Main", "GameFiber > MoneyRenderManager.Loop() > Starting Instance");
+                //GameFiber.StartNew(MoneyRenderManager.Fiber);
 
                 GameFiber.Sleep(5000);
                 Game.FadeScreenIn(1000);
@@ -106,6 +115,9 @@ namespace NALRage
 
                 NativeFunction.Natives.x92F0DA1E27DB96DC(210); // set notification colors
                 Game.DisplayNotification("You have currently playing the ~h~RAGE Plug-in Hook~s~ version.");
+
+                NativeFunction.Natives.x92F0DA1E27DB96DC(6);
+                Game.DisplayNotification("~h~WARNING~w~: PoC next-gen character is active.");
 
                 GameFiber.Hibernate();
             }

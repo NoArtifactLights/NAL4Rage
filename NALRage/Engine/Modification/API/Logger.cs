@@ -1,4 +1,4 @@
-﻿using Rage;
+using Rage;
 using System;
 
 namespace NALRage.Engine.Modification.API
@@ -7,7 +7,7 @@ namespace NALRage.Engine.Modification.API
     {
         internal static void Log(string sender, string text, string level)
         {
-            Game.LogTrivial($"[{DateTime.Now}] [{sender}/{level}] {text}");
+            Game.LogTrivial($"[{sender}/{level}] {text}");
         }
 
         internal static void Trace(string sender, string text)
