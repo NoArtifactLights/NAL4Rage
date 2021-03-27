@@ -1,3 +1,6 @@
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
 using NALRage.Entities.Serialization;
 using Newtonsoft.Json;
 using Rage;

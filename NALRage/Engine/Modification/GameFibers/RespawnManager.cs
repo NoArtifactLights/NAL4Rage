@@ -1,5 +1,5 @@
-﻿// // NALRage
-// // Copyright (C) RelaperCrystal 2021-2021.
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
 
 using Rage;
 

@@ -22,7 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 * :wastebasket: **Removed:**
   
-  Removed a feature.
+  Removed or disabled a feature.
 
 * :newspaper: **Documentation:**
   
@@ -39,6 +39,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 * :newspaper: means a change in the docs included
 * :bug: means a bug fix
 * :bomb: means something removed
+
+## Unreleased
+
+* :construction: **WIP Feature:** Proof of concept on the Next-Gen Character.
+
+* :wastebasket: **Removed:** Money amount is now removed due to mysterious LUI4Rage MethodNotFound errors.
 
 ## 0.5 Beta 37344 (SN: 0318-2021-37344)
 

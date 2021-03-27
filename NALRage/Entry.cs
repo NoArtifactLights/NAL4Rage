@@ -1,4 +1,4 @@
-// Copyright (C) Hot Workshop & contributors 2020.
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
 // Licensed under GNU General Public License version 3.
 
 using NALRage.Engine;
@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using NALRage.Engine.Modification.Custom;
-using NALRage.Engine.UI;
 using NALRage.Engine.Modification.Character;
 
 // Experimental, May Fail!
@@ -101,8 +100,6 @@ namespace NALRage
                 shops = GameFiber.StartNew(ShopManager.Loop, "ShopManager");
                 Logger.Info("Main", "GameFiber > RespawnManager.Loop() > Starting");
                 GameFiber.StartNew(RespawnManager.Loop);
-                //Logger.Info("Main", "GameFiber > MoneyRenderManager.Loop() > Starting Instance");
-                //GameFiber.StartNew(MoneyRenderManager.Fiber);
 
                 GameFiber.Sleep(5000);
                 Game.FadeScreenIn(1000);

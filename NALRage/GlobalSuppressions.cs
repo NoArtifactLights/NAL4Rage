@@ -8,3 +8,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<挂起>", Scope = "type", Target = "~T:NALRage.Entities.Serialization.SaveWeaponDescriptor")]
 [assembly: SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<挂起>", Scope = "type", Target = "~T:NALRage.Entities.Serialization.SaveFile")]
 [assembly: SuppressMessage("General", "RCS1079:Throwing of new NotImplementedException.", Justification = "<挂起>", Scope = "member", Target = "~M:NALRage.Entities.Serialization.Customization.WeaponShop.GetHashCode~System.Int32")]
+[assembly: SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<挂起>", Scope = "type", Target = "~T:NALRage.Engine.Identifier")]

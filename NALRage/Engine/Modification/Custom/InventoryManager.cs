@@ -1,8 +1,10 @@
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
+// FOR EDITORS - THIS FILE IS NOT COMPILED ANYMORE
+
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NALRage.Engine.Modification.Custom.Inventory;
 
 namespace NALRage.Engine.Modification.Custom
@@ -14,7 +16,7 @@ namespace NALRage.Engine.Modification.Custom
         
         internal static void LoadInventory(Item[] items)
         {
-
+            // TODO complete inventory feature
         }
     }
 }

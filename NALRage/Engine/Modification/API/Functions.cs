@@ -1,13 +1,13 @@
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
 using NALRage.Engine.Modification.API.Events;
 using NALRage.Entities;
 using Rage;
 using Rage.Exceptions;
 using Rage.Native;
 using System;
-using System.Windows.Forms;
 using NALRage.Engine.Modification.GameFibers;
-using System.Runtime.CompilerServices;
-using Rage.Attributes;
 
 namespace NALRage.Engine.Modification.API
 {

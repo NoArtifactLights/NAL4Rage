@@ -1,4 +1,7 @@
-﻿namespace NALRage.Engine.Modification.API
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
+namespace NALRage.Engine.Modification.API
 {
     /// <summary>
     /// Represents a processable instance. Similar to a scripting component in LSPD First Response.

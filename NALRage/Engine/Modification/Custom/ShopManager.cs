@@ -1,3 +1,6 @@
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
 using System.IO;
 using System.Xml.Serialization;
 using LemonUI.Menus;
@@ -8,14 +11,15 @@ using Rage;
 
 namespace NALRage.Engine.Modification.Custom
 {
-    // TODO test
     internal static class ShopManager
     {
         private static FoodShop[] shops;
+#pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
         private static FoodItem[] currentItems;
         private static bool alreadySetCurrentItems;
 
         private static NativeMenu shopMenu;
+#pragma warning restore S1450 // Private fields only used as local variables in methods should become local variables
 
         internal static void LoadShopManager()
         {

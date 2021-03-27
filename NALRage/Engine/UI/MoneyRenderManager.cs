@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LemonUI;
 using LemonUI.Elements;
 using Rage;

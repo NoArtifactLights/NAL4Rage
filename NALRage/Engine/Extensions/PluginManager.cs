@@ -1,4 +1,7 @@
-﻿using System;
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,13 +30,15 @@ namespace NALRage.Engine.Extensions
                 Logger.Info("PluginManager", "NAL plug-ins folder does not exist. Aborting.");
                 return;
             }
-            string[] files = Directory.GetFiles("plugins\\NAL\\", "*.dll");
-            foreach (var file in files)
+            foreach (var file in Directory.GetFiles("plugins\\NAL\\", "*.dll"))
             {
                 Assembly assembly = null;
                 try
                 {
-                    assembly = Assembly.LoadFrom(file);
+#pragma warning disable S3885 // "Assembly.Load" should be used
+                    assembly = Assembly.LoadFrom(file); // this is on purpose - we don't need to load specific since it's designed to any of them
+#pragma warning restore S3885 // "Assembly.Load" should be used
+#pragma warning disable CA1031
                 }
                 catch (BadImageFormatException)
                 {
@@ -48,8 +53,11 @@ namespace NALRage.Engine.Extensions
                 catch (Exception ex)
                 {
                     Logger.Error("PluginManager", $"Unable to load {file} because {ex.Message}.");
+                    Logger.Error("PluginManager", "Cease loading plugins.");
                     Logger.Error("PluginManager", ex.ToString());
                 }
+
+#pragma warning restore CA1031
 
                 if (assembly == null)
                 {

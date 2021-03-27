@@ -1,6 +1,8 @@
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
 using LemonUI.Menus;
 using NALRage.Engine.Modification;
-using NALRage.Entities.Serialization;
 using NALRage.Entities.Serialization.Customization;
 using Rage;
 using System;

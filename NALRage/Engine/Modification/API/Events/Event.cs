@@ -1,3 +1,6 @@
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
 using System;
 using System.Collections.Generic;
 using Rage;
@@ -9,8 +12,6 @@ namespace NALRage.Engine.Modification.API.Events
     /// </summary>
     public abstract class Event : IProcessable
     {
-        // internal GameFiber Fiber;
-
         /// <summary>
         /// Gets or sets the ped allocated to this <see cref="Event"/>.
         /// </summary>
@@ -65,15 +66,5 @@ namespace NALRage.Engine.Modification.API.Events
         /// Ended events no longer gets processed.
         /// </summary>
         public virtual bool IsEnded { get; protected set; }
-
-        // internal void FiberThread()
-        // {
-        //     Start(p);
-        //     while(!IsEnded)
-        //     {
-        //         GameFiber.Yield();
-        //         Process();
-        //     }
-        // }
     }
 }

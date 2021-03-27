@@ -1,3 +1,6 @@
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
 using NALRage.Engine.Modification.API.Events;
 using NALRage.Entities;
 using Rage;

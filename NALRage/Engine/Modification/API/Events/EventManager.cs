@@ -1,4 +1,7 @@
-﻿using Rage;
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
+using Rage;
 using System;
 using System.Collections.Generic;
 

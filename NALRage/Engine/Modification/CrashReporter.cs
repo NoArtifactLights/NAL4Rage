@@ -1,4 +1,7 @@
-﻿using NALRage.Engine.Modification.API;
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
+using NALRage.Engine.Modification.API;
 using Rage;
 using System;
 
@@ -29,7 +32,9 @@ namespace NALRage.Engine.Modification
             Logger.Fatal("CrashReporter", "Exception Message: " + Exc.Message);
             Logger.Fatal("CrashReporter", Exc.StackTrace);
             Logger.Fatal("CrashReporter", "--------------------------------------------------");
+#pragma warning disable S112 // General exceptions should never be thrown
             throw new Exception("Aborting this instance! See report above!");
+#pragma warning restore S112 // General exceptions should never be thrown
         }
 
         internal Exception Exc { get; private set; }

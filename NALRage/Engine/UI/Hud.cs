@@ -1,12 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
 using Rage.Native;
 
 namespace NALRage.Engine.UI
 {
+	/// <summary>
+	/// Hud Related functions.
+	/// </summary>
 	public static class Hud
 	{
 		/// <summary>

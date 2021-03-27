@@ -1,5 +1,8 @@
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
 using Rage;
-using System;
+
 
 namespace NALRage.Engine.Modification.API
 {

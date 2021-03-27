@@ -1,10 +1,28 @@
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
 namespace NALRage.Engine.UI
 {
+    /// <summary>
+    /// An enumeration of all possible HUD components.
+    /// </summary>
     public enum HudComponent
     {
+        /// <summary>
+        /// The wanted level display.
+        /// </summary>
         WantedStars = 1,
+        /// <summary>
+        /// The icon of the weapon.
+        /// </summary>
         WeaponIcon,
+        /// <summary>
+        /// The current money amount.
+        /// </summary>
         Cash,
+        /// <summary>
+        /// Multi player money amount.
+        /// </summary>
         MpCash,
         MpMessage,
         VehicleName,

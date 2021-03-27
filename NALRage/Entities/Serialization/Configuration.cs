@@ -1,3 +1,6 @@
+// Copyright (C) Hot Workshop & contributors 2020, 2021.
+// Licensed under GNU General Public License version 3.
+
 using NALRage.Engine.Modification.API.Events;
 
 namespace NALRage.Entities.Serialization
@@ -63,6 +66,10 @@ namespace NALRage.Entities.Serialization
         /// Gets or sets the default difficulty of the modification.
         /// </summary>
         public Difficulty DefaultDifficulty { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating whether to enable riot.
+        /// </summary>
         public bool Riot { get; internal set; }
     }
 }
