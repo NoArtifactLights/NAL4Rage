@@ -8,8 +8,10 @@ namespace NALRage.Engine
 {
     internal static class HungryUtils
     {
+#pragma warning disable S2223 // Non-constant static fields should not be visible
         internal static GameFiber Fiber;
         internal static GameFiber Drawing;
+#pragma warning restore S2223 // Non-constant static fields should not be visible
 
         internal static void StartFiber()
         {

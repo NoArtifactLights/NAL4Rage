@@ -31,10 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RagePluginHookSDK, Version=0.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\SDK\RagePluginHookSDK.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="RagePluginHookSDK">
+      <HintPath>..\Dependencies\RagePluginHookSDK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,6 +61,8 @@
     <None Include="Engine\Modification\Custom\Inventory\ItemConverter.cs" />
     <None Include="Engine\Modification\Custom\Inventory\PlayerInventory.cs" />
     <None Include="Engine\Modification\Custom\Inventory\StackableItem.cs" />
+    <Compile Include="Engine\Modification\Custom\Character\PedHeadBlend.cs" />
+    <Compile Include="Engine\Modification\Custom\Character\PedHeadOverlay.cs" />
     <Compile Include="Engine\UI\Hud.cs" />
     <Compile Include="Engine\UI\HudComponent.cs" />
     <Compile Include="Engine\UI\Menus\MenuManager.cs" />
